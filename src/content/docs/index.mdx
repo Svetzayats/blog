@@ -1,16 +1,32 @@
 ---
 title: Svetlana Zaiats
-description: I like solving problems and learning stuff. 
+description: I like solving problems and learning stuff.
 template: splash
 hero:
   tagline: I like solving problems and learning stuff.
+  actions:
+    - text: Let's become familiar
+      link: /about/
+      icon: right-arrow
+      variant: primary
+    - text: My reading list
+      link: /reading_list/
+      icon: open-book
+      variant: secondary
   image:
     file: ../../assets/me_on_meetup.jpeg
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Badge } from '@astrojs/starlight/components';
 
-## Next steps
+### Now I...
+<Badge text="Learning Astro" variant="note" />
+<Badge text="Trying Svelte" variant="success" />
+<Badge text="Reading Anne Rice" variant="tip" />
+<Badge text="Watching American Dad" variant="caution" />
+<Badge text="In love with running" variant="danger" />
+
 
 <CardGrid stagger>
 	<Card title="Update content" icon="pencil">

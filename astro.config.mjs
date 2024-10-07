@@ -24,8 +24,8 @@ export default defineConfig({
 					autogenerate: { directory: 'dev_guides' },
 				},
 				{
-					label: 'Content Reviews', 
-					autogenerate: { directory: 'content_reviews' },
+					label: 'Reading List', 
+					autogenerate: { directory: 'reading_list' },
 				},
 				{
 					label: 'Life Insights', 
@@ -40,6 +40,9 @@ export default defineConfig({
 					autogenerate: { directory: 'occasional_daily' },
 				}
 			],
+			customCss: [
+        './src/styles/custom.css',
+      ],
 		}),
 	],
 });
