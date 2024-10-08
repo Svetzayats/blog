@@ -17,28 +17,36 @@ hero:
     file: ../../assets/me_on_meetup.jpeg
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
-import { Badge } from '@astrojs/starlight/components';
+import { Card, CardGrid, Badge, Icon } from '@astrojs/starlight/components';
 
-### Now I...
-<Badge text="Learning Astro" variant="note" />
-<Badge text="Trying Svelte" variant="success" />
-<Badge text="Reading Anne Rice" variant="tip" />
+<div className='block'>
+### Currently into
+<Badge text="Learning Astro 🚀" variant="note" />
+<Badge text="Reading Anne Rice 📚" variant="tip" />
+<Badge text="Experimenting with Svelte" variant="success" />
 <Badge text="Watching American Dad" variant="caution" />
-<Badge text="In love with running" variant="danger" />
-
+<Badge text="Exploring Embroidery 🧵" variant="danger" />
+</div>
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
+<Card title="Let's Get Linked" icon="linkedin">
+  I’m a **frontend developer** with a passion for creating effective UI solutions. My current stack includes **React** and 
+  **TypeScript**, but I’m always open to learning new things and trying out new technologies. I also mentor a JavaScript 
+  course at RSSchool and I'm preparing to speak at a tech conference. 
+  [Connect](https://www.linkedin.com/in/svetlana-zayats/) if you’d like to discuss tech, non-tech topics, or suggest a job 👩‍💻
+</Card>
+  <Card title="What You'll Find Here" icon="seti:code-search">
+    Notes about web development and learning different things – from cognitive research and
+    experiments to embroidery tricks. Information is separated into sections by theme so you can 
+    dive into what's interesting for you. [Explore →](/about/)
+  </Card>
+
+  <Card title="Reviews on Books" icon="open-book">
+    And not just books – sometimes movies, shows, and anime too. [Check out the latest →](/reading_list/) 
+  </Card>
+
+  <Card title="Stories About Places" icon="sun">
+    I'm currently living in Georgia and writing about our trips here and other travels. Find photos and
+    highly opinionated, amateur travel reviews [here](/travel_places/)
+  </Card>
 </CardGrid>

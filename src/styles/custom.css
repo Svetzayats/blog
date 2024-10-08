@@ -27,3 +27,7 @@
 	--sl-color-gray-7: #f8f4fe;
 	--sl-color-black: #ffffff;
 }
+
+.block {
+  margin-block: 2em;
+}
