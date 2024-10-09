@@ -186,13 +186,6 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdx"] };
-"reference/example.md": {
-	id: "reference/example.md";
-  slug: "reference/example";
-  body: string;
-  collection: "docs";
-  data: InferEntrySchema<"docs">
-} & { render(): Render[".md"] };
 "travel_places/index.mdx": {
 	id: "travel_places/index.mdx";
   slug: "travel_places";

@@ -1,5 +1,62 @@
 ---
-title: About Svetlana
+title: About me
 description: Frontend Engineer 💻 JS Mentor 📚 Book and Anime Lover 🎌 Sports Fan (Non-Professional) 🏓 Novice Embroiderer 🧵
 template: doc
 ---
+export const age = new Date().getFullYear() - 1991;
+export const experience = new Date().getFullYear() - 2018;
+import { CardGrid, Card } from '@astrojs/starlight/components';
+
+### Some facts 
+- My family name translates to "Hare" in English and "კურდღელი" in Georgian
+- I am {age} years old
+- I have {experience} years of development experience
+- I live in Tbilisi, Georgia
+- I love reading books
+- I believe the best anime is Ouran High School Host Club
+- I adore sports, especially table tennis
+- I am a novice embroiderer
+- I have a beautiful cat named "Trisha," in honor of Cat Woman from Max Frey’s books
+ 
+<CardGrid>
+  <Card title="About Development" icon="star">
+    I specialize in React/TS/JS and am always open to learning new things and trying out new technologies. Since I don’t fully rely on my memory, 
+    I’ve started writing dev notes — collections of resources that I find interesting, along with insights and guides.
+    [Dev notes →]('/dev_notes/')
+  </Card>
+  <Card title="About Reading" icon="star">
+    I love reading books, especially fantasy and non-fiction. Sometimes, I share
+     my thoughts in reviews and keep a reading diary to track my journey.
+     [Reading Diary →]('/reading_list/')
+  </Card>
+  <Card title="About Places" icon="star">
+    From time to time, I explore new places and love sharing my impressions — because 
+    I also enjoy reading others’ reviews of places. 
+    [Impressions and recommendations →](/travel_places/)
+  </Card>
+  <Card title="Occasional Daily" icon="star">
+    Little notes about my daily life, thoughts, and feelings. As I mentioned, 
+    memory isn’t always reliable, so I jot down things to remember.
+    [Notes →]('/occasional_daily/')
+  </Card>
+</CardGrid>
+
+### Me as a Developer
+My current stack includes React, TypeScript, and JavaScript. In my free time, I’m also learning Vue, Svelte, and Remix. I’m particularly impressed by the Remix framework and can’t wait to use it in my projects. Svelte feels like magic to me at the moment, and I plan to dive deeper into it and eventually use it on this website.
+
+At work, I’m a frontend engineer responsible for three projects:
+- A platform for managing office space and resources
+- A platform for automating onboarding processes
+- An internal platform for managing company location data
+
+{//TODO: круто было бы добавить инфу из frontendmasters и тд, как-то подтягивать
+}
+
+
+### My current goals
+- Complete my personal website (this one) 
+- Achieve a strong English B2 and Georgian A1 proficiency
+- Develop a system for storing and sharing my knowledge
+- Finish the course [The Hard Parts of Asynchronous JavaScript](https://frontendmasters.com/courses/javascript-new-hard-parts/)
+- Maintain regular sports activities
+
