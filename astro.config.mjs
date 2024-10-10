@@ -14,7 +14,7 @@ export default defineConfig({
 				instagram: 'https://www.instagram.com/fare_dodger'
 			},
 			sidebar: [
-				{ label: 'About', link: '/about/' },
+				{ label: 'About', link: '/about/', translations: { ru: 'Обо мне' } },
 				{
 					label: 'Dev Notes',
 					autogenerate: { directory: 'dev_notes' },
@@ -40,6 +40,19 @@ export default defineConfig({
 					autogenerate: { directory: 'occasional_daily' },
 				}
 			],
+			defaultLocale: 'root',
+			locales: {
+				root: {
+					label: 'English',
+					locale: 'en',
+					lang: 'en',
+				},
+				ru: {
+					label: 'Русский',
+					locale: 'ru',
+					lang: 'ru',
+				},
+			},
 			customCss: [
         './src/styles/custom.css',
       ],
