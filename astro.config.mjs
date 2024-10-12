@@ -24,8 +24,8 @@ export default defineConfig({
 					autogenerate: { directory: 'dev_guides' },
 				},
 				{
-					label: 'Reading List', 
-					autogenerate: { directory: 'reading_list' },
+					label: 'Content List', 
+					autogenerate: { directory: 'content_list' },
 				},
 				{
 					label: 'Life Insights', 
