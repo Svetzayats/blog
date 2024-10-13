@@ -3,6 +3,8 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://svetzayats.github.io/',
+  base: '/blog',
 	integrations: [
 		starlight({
 			title: '🐰 Svetlana Zaiats',
