@@ -1,0 +1,8 @@
+{
+  "bookInfo.title": "Название", 
+  "bookInfo.author": "Автор(ы)",
+  "bookInfo.started": "Начала читать",
+  "bookInfo.finished": "Закончила",
+  "bookInfo.whyStarted": "Почему начала читать",
+  "bookInfo.recommendations": "Рекомендации"
+}

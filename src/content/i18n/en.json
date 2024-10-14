@@ -1,0 +1,8 @@
+{
+  "bookInfo.title": "Title", 
+  "bookInfo.author": "Author(s)",
+  "bookInfo.started": "Started",
+  "bookInfo.finished": "Finished",
+  "bookInfo.whyStarted": "Why I started to read",
+  "bookInfo.recommendations": "Recommendations"
+}
