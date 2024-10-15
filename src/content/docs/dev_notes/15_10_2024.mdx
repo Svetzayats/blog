@@ -1,0 +1,52 @@
+---
+title: Watch out for divs
+---
+import { Aside, Badge } from '@astrojs/starlight/components';
+
+## Problem I Solved Today at Work 
+<Badge text='React' />
+We have a table with filters that display a list of offices visits. 
+Some visits require additional attention from managers, such as when 
+an access card is issued for a visit, but the visit ends and the card hasn't been returned.
+
+The task was to highlight such visits in the table. 
+I did this by highlighting the row and adding a banner at the top. 
+This banner allows for quickly filtering visits that require attention.
+
+I implemented this (including extra functionality to avoid saving the filter 
+with only highlighted visits), and it worked — until some issues appeared with the filters.
+
+Most of the filters are dropdowns with a list of options. On this feature branch, 
+the dropdowns became slow, and after 3-4 fast clicks, the page started to freeze. 
+The console showed errors about "Maximum update depth exceeded" and 
+recommended checking my useEffects. 
+The stack trace pointed to the dropdown component from our company’s component library.
+
+## What I Did To Solve The Problem
+I started by trying to understand what was happening. 
+Additional difficulty was that ghe issue appeared after I added code from another package in our monorepo (I use npm workspaces), and there were a lot of changes in the code.
+
+Debugging was challenging, as the dropdown component seemed fine, 
+and I couldn’t see any changes that could have caused the issue.
+
+I tried Googling and asking Claude (AI assistance), 
+but then turned to one of my favorite debugging methods — **removing parts of the code.**
+
+First, I wanted to see if the issue came from using the new package. 
+I created a new branch from our develop branch and moved minimal feature changes there. 
+The problem was still present.
+
+Next, I removed parts of the feature code, including requests and data handling. 
+The problem persisted.
+
+I was almost ready to give up, but I decided to remove all the feature code. 
+And suddenly, the problem disappeared.
+
+Finally, I found the issue: I had added a div to wrap the table and the banner above it.
+When I replaced it with a fragment, the issue disappeared.
+
+<Aside title="Nota bene">
+- Sometimes the problem lies in the most unexpected place.
+- If you suspect an issue in part of the code, try to reproduce it in a minimal environment.
+</Aside>
+

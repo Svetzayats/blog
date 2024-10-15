@@ -156,84 +156,98 @@ declare module 'astro:content' {
   slug: "about";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "content_list/index.mdx": {
 	id: "content_list/index.mdx";
   slug: "content_list";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "content_list/reading/unbearable_kundera.mdx": {
 	id: "content_list/reading/unbearable_kundera.mdx";
   slug: "content_list/reading/unbearable_kundera";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "dev_guides/index.mdx": {
 	id: "dev_guides/index.mdx";
   slug: "dev_guides";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
+} & { render(): Render[".mdx"] };
+"dev_notes/15_10_2024.mdx": {
+	id: "dev_notes/15_10_2024.mdx";
+  slug: "dev_notes/15_10_2024";
+  body: string;
+  collection: "docs";
+  data: any
 } & { render(): Render[".mdx"] };
 "dev_notes/courses.mdx": {
 	id: "dev_notes/courses.mdx";
   slug: "dev_notes/courses";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "dev_notes/index.mdx": {
 	id: "dev_notes/index.mdx";
   slug: "dev_notes";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "index.mdx": {
 	id: "index.mdx";
   slug: "index";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "life_insights/index.mdx": {
 	id: "life_insights/index.mdx";
   slug: "life_insights";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/about.mdx": {
 	id: "ru/about.mdx";
   slug: "ru/about";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/content_list/reading/unbearable_kundera.mdx": {
 	id: "ru/content_list/reading/unbearable_kundera.mdx";
   slug: "ru/content_list/reading/unbearable_kundera";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
+} & { render(): Render[".mdx"] };
+"ru/dev_notes/15_10_2024.mdx": {
+	id: "ru/dev_notes/15_10_2024.mdx";
+  slug: "ru/dev_notes/15_10_2024";
+  body: string;
+  collection: "docs";
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/dev_notes/courses.mdx": {
 	id: "ru/dev_notes/courses.mdx";
   slug: "ru/dev_notes/courses";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "travel_places/index.mdx": {
 	id: "travel_places/index.mdx";
   slug: "travel_places";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 };
 
@@ -244,12 +258,12 @@ declare module 'astro:content' {
 "en": {
 	id: "en";
   collection: "i18n";
-  data: InferEntrySchema<"i18n">
+  data: any
 };
 "ru": {
 	id: "ru";
   collection: "i18n";
-  data: InferEntrySchema<"i18n">
+  data: any
 };
 };
 
@@ -257,5 +271,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = typeof import("../../src/content/config.js");
+	export type ContentConfig = never;
 }
