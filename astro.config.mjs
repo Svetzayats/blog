@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightBlog from 'starlight-blog';
 
 // https://astro.build/config
 export default defineConfig({
@@ -8,6 +9,12 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: '🐰 Svetlana Zaiats',
+			plugins: [starlightBlog({
+				title: {
+					en: 'Blog',
+					ru: 'Блог',
+				},
+			})],
 			social: {
 				github: 'https://github.com/Svetzayats',
 				linkedin: 'https://www.linkedin.com/in/svetlana-zayats/',
@@ -18,29 +25,13 @@ export default defineConfig({
 			sidebar: [
 				{ label: 'About', link: '/about/', translations: { ru: 'Обо мне' } },
 				{
-					label: 'Dev Notes',
-					autogenerate: { directory: 'dev_notes' },
-				},
-				{
-					label: 'Dev Guides',
+					label: 'About development',
 					autogenerate: { directory: 'dev_guides' },
 				},
 				{
 					label: 'Content List', 
 					autogenerate: { directory: 'content_list' },
 				},
-				{
-					label: 'Life Insights', 
-					autogenerate: { directory: 'life_insights' },
-				}, 
-				{
-					label: 'Travel & Places', 
-					autogenerate: { directory: 'travel_places' },
-				}, 
-				{
-					label: 'Occasional Daily',
-					autogenerate: { directory: 'occasional_daily' },
-				}
 			],
 			defaultLocale: 'root',
 			locales: {

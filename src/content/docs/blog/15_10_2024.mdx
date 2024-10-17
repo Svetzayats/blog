@@ -1,10 +1,13 @@
 ---
 title: Watch out for divs
+date: 2024-10-15
+tags: 
+  - React
 ---
 import { Aside, Badge } from '@astrojs/starlight/components';
 
-## Problem I Solved Today at Work 
-<Badge text='React' />
+I want to tell about a problem I solved today at work.
+
 We have a table with filters that display a list of offices visits. 
 Some visits require additional attention from managers, such as when 
 an access card is issued for a visit, but the visit ends and the card hasn't been returned.
@@ -22,7 +25,7 @@ The console showed errors about "Maximum update depth exceeded" and
 recommended checking my useEffects. 
 The stack trace pointed to the dropdown component from our company’s component library.
 
-## What I Did To Solve The Problem
+### What I Did To Solve The Problem
 I started by trying to understand what was happening. 
 Additional difficulty was that ghe issue appeared after I added code from another package in our monorepo (I use npm workspaces), and there were a lot of changes in the code.
 
