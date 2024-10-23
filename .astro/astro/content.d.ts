@@ -214,6 +214,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdx"] };
+"dev_guides/testing_fundamentals_workshow.mdx": {
+	id: "dev_guides/testing_fundamentals_workshow.mdx";
+  slug: "dev_guides/testing_fundamentals_workshow";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
 "index.mdx": {
 	id: "index.mdx";
   slug: "index";
@@ -266,6 +273,13 @@ declare module 'astro:content' {
 "ru/dev_guides/podlodka_techlead_7.mdx": {
 	id: "ru/dev_guides/podlodka_techlead_7.mdx";
   slug: "ru/dev_guides/podlodka_techlead_7";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
+"ru/dev_guides/testing_fundamentals_workshow.mdx": {
+	id: "ru/dev_guides/testing_fundamentals_workshow.mdx";
+  slug: "ru/dev_guides/testing_fundamentals_workshow";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
