@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+
+type Props = {
+    category: string;
+}
+
+const { category } = Astro.props;
+
+const items = await getCollection('docs', (entry) => {
+    return entry.data.category === category;
+});
+---
+<ul>
+    {items.map(item => <li><a href={ `/blog/${item.slug}`}>{item.data.title}</a></li>)}
+</ul>
