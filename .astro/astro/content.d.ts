@@ -150,15 +150,7 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		"content_list": Record<string, {
-  id: string;
-  slug: string;
-  body: string;
-  collection: "content_list";
-  data: any;
-  render(): Render[".md"];
-}>;
-"docs": {
+		"docs": {
 "about.mdx": {
 	id: "about.mdx";
   slug: "about";
@@ -197,6 +189,13 @@ declare module 'astro:content' {
 "content_list/reading/unbearable_kundera.mdx": {
 	id: "content_list/reading/unbearable_kundera.mdx";
   slug: "content_list/reading/unbearable_kundera";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
+"dev_guides/content_listing_in_starlight.mdx": {
+	id: "dev_guides/content_listing_in_starlight.mdx";
+  slug: "dev_guides/content_listing_in_starlight";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
@@ -271,6 +270,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdx"] };
+"ru/dev_guides/content_listing_in_starlight.mdx": {
+	id: "ru/dev_guides/content_listing_in_starlight.mdx";
+  slug: "ru/dev_guides/content_listing_in_starlight";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
 "ru/dev_guides/courses.mdx": {
 	id: "ru/dev_guides/courses.mdx";
   slug: "ru/dev_guides/courses";
@@ -293,15 +299,30 @@ declare module 'astro:content' {
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdx"] };
 };
-"docs/content_list": Record<string, {
-  id: string;
-  slug: string;
-  body: string;
-  collection: "docs/content_list";
-  data: any;
-  render(): Render[".md"];
-}>;
-"reading": Record<string, {
+
+	};
+
+	type DataEntryMap = {
+		"i18n": {
+"en": {
+	id: "en";
+  collection: "i18n";
+  data: InferEntrySchema<"i18n">
+};
+"ru": {
+	id: "ru";
+  collection: "i18n";
+  data: InferEntrySchema<"i18n">
+};
+};
+
+	};
+
+	type AnyEntryMap = ContentEntryMap & DataEntryMap;
+
+	export type ContentConfig = typeof import("../../src/content/config.js");
+}
+string, {
   id: string;
   slug: string;
   body: string;

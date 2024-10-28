@@ -1,0 +1,134 @@
+---
+title: Автоматическая генерация списка записей в Starlight
+---
+import { Aside } from '@astrojs/starlight/components';
+
+
+Я использую [Starlight](https://starlight.astro.build/) + [плагин Starlight-blog](https://github.com/HiDeoo/starlight-blog)
+для моего блога. У меня есть собственно страница блога с маленькими заметками и 2 раздела, которые содержат внутри
+себя набор заметок: книжный дневник и гайды по разработке.
+
+**Для книжного дневника мне захотелось сделать страничку с оглавлением**: собрать названия и ссылки на
+все записи из моего книжного раздела в одном месте. Добавлять руками каждый раз при добавлении
+записи про книгу - лень, так что надо сделать так, чтобы из набора записей про книги генерился список
+для оглавления со ссылками.
+
+## Querying Collections в Astro
+
+В Astro есть возможность [запрашивать коллекции](https://docs.astro.build/en/guides/content-collections/#querying-collections),
+и это выглядело как отличный вариант: мне нужно запросить коллекцию записей в content/docs/content_list/reading -
+и выводить на страничке список всех этих записей.
+
+Звучит отлично, но: Astro умеет работать только с коллекциями на первом уровне
+> A content collection is any top-level directory inside the reserved src/content project directory, such as src/content/newsletter and src/content/authors.
+> ([документация](https://docs.astro.build/en/guides/content-collections/#what-are-content-collections))
+
+A Starlight уже создал одну коллекцию верхнего уровня - docs, в которой я размещаю свои коллекции.
+
+Что ж, начинаем отбирать только нужные нам записи.
+
+## Фильтруем коллекции в Starlight
+
+В `getCollection()` можно передать коллбек с функцией-фильтром. Чтобы проще было фильтровать, начнём
+присваивать заметкам категорию - по сути, это раздел или тема заметки.
+
+Добавляем в описание схемы опциональное свойство **category**
+```ts title='src/content/config.ts' {5-8, 13}
+import { defineCollection, z } from 'astro:content';
+import { docsSchema, i18nSchema } from '@astrojs/starlight/schema';
+import { blogSchema } from 'starlight-blog/schema';
+
+const customFields = z.object({
+	// for quering entries in collections
+	category: z.string().optional(),
+})
+export const collections = {
+	docs: defineCollection({ schema: docsSchema({
+		extend: (context) => {
+			const baseSchema = blogSchema(context);
+			return baseSchema.merge(customFields);
+		}
+	}) }),
+	i18n: defineCollection({ type: 'data', schema: i18nSchema({}),
+	}) })
+};
+
+```
+
+
+Создаем компонент, которы получает все записи для коллекции docs и отфильтровывает только
+помеченные как category: reading
+
+```tsx title='src/components/ReadingList.astro' {2-3}
+---
+const books = await getCollection('docs', (entry) => {
+    return entry.data.category === 'reading';
+});
+---
+
+<ul>
+    {books.map(book => <li><a href={ `/blog/${book.slug}`}>{book.data.title}</a></li>)}
+</ul>
+```
+
+В записи для книжного дневника добавляем category: reading
+
+```mdxjs title='src/content/docs/content_list/reading/bookTitle.mdx'
+---
+title: 'Title of book'
+category: 'reading'
+---
+```
+
+Отлично, работает!
+
+## А что насчёт разных локализованных версий?
+Идем в русскую версию... и понимаем, что у нас проблемы.
+Потому что нам надо не задублировать записи и при этом вывести правильные для каждой локализации.
+
+Что делаем? **Кастомизируем наш компонент для вывода списка и делаем более конкретной систему категорий,
+учитывающую версии контента на разных языках**
+(в todo записываем, что надо будет перейти с просто string на конечный список категорий,
+чтобы не расплодить ерунды и были подсказки).
+
+Теперь наш компонент для сбора и вывода списка заметок по категории выглядит так:
+
+```tsx title='src/components/ContentList.astro' {6-9}
+type Props = {
+    category: string;
+}
+
+const {category} = Astro.props;
+
+const items = await getCollection('docs', (entry) => {
+    return entry.data.category === category;
+});
+---
+<ul>
+    {items.map(item => <li><a href={ `/blog/${item.slug}`}>{item.data.title}</a></li>)}
+</ul>
+```
+
+В файлах для каждого языка указываем нужную категорию
+```mdxjs title='src/content/docs/content_list/reading/bookTitle.mdx' {3}
+---
+title: 'Title of book'
+category: 'reading-en'
+---
+```
+
+```mdxjs title='src/content/docs/ru/content_list/reading/bookTitle.mdx' {3}
+---
+title: 'Название книги'
+category: 'reading-ru'
+---
+```
+
+Готово! Результат можно посмотреть на [странице списка книг](/blog/ru/content_list/reading/).
+
+<Aside title='Итого'>
+    **Для добавления генерации в starlight блоге списка заметок по разделу**:
+    - придумываем кастомное поле для хранения категории и добавляем его в схему
+    - фильтруем результаты getCollection — все записи в docs, то есть всё — по нужной категории
+    - выводим, как заблагорассудится
+</Aside>
