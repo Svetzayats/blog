@@ -156,147 +156,161 @@ declare module 'astro:content' {
   slug: "about";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2024_10_15.mdx": {
 	id: "blog/2024_10_15.mdx";
   slug: "blog/2024_10_15";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2024_10_17.mdx": {
 	id: "blog/2024_10_17.mdx";
   slug: "blog/2024_10_17";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "content_list/index.mdx": {
 	id: "content_list/index.mdx";
   slug: "content_list";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "content_list/reading/index.mdx": {
 	id: "content_list/reading/index.mdx";
   slug: "content_list/reading";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
+} & { render(): Render[".mdx"] };
+"content_list/reading/school_sokolov.mdx": {
+	id: "content_list/reading/school_sokolov.mdx";
+  slug: "content_list/reading/school_sokolov";
+  body: string;
+  collection: "docs";
+  data: any
 } & { render(): Render[".mdx"] };
 "content_list/reading/unbearable_kundera.mdx": {
 	id: "content_list/reading/unbearable_kundera.mdx";
   slug: "content_list/reading/unbearable_kundera";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "dev_guides/content_listing_in_starlight.mdx": {
 	id: "dev_guides/content_listing_in_starlight.mdx";
   slug: "dev_guides/content_listing_in_starlight";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "dev_guides/courses.mdx": {
 	id: "dev_guides/courses.mdx";
   slug: "dev_guides/courses";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "dev_guides/index.mdx": {
 	id: "dev_guides/index.mdx";
   slug: "dev_guides";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "dev_guides/podlodka_techlead_7.mdx": {
 	id: "dev_guides/podlodka_techlead_7.mdx";
   slug: "dev_guides/podlodka_techlead_7";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "dev_guides/testing_fundamentals_workshow.mdx": {
 	id: "dev_guides/testing_fundamentals_workshow.mdx";
   slug: "dev_guides/testing_fundamentals_workshow";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "index.mdx": {
 	id: "index.mdx";
   slug: "index";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/about.mdx": {
 	id: "ru/about.mdx";
   slug: "ru/about";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/blog/2024_10_15.mdx": {
 	id: "ru/blog/2024_10_15.mdx";
   slug: "ru/blog/2024_10_15";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/blog/2024_10_17.mdx": {
 	id: "ru/blog/2024_10_17.mdx";
   slug: "ru/blog/2024_10_17";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/content_list/reading/index.mdx": {
 	id: "ru/content_list/reading/index.mdx";
   slug: "ru/content_list/reading";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
+} & { render(): Render[".mdx"] };
+"ru/content_list/reading/school_sokolov.mdx": {
+	id: "ru/content_list/reading/school_sokolov.mdx";
+  slug: "ru/content_list/reading/school_sokolov";
+  body: string;
+  collection: "docs";
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/content_list/reading/unbearable_kundera.mdx": {
 	id: "ru/content_list/reading/unbearable_kundera.mdx";
   slug: "ru/content_list/reading/unbearable_kundera";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/dev_guides/content_listing_in_starlight.mdx": {
 	id: "ru/dev_guides/content_listing_in_starlight.mdx";
   slug: "ru/dev_guides/content_listing_in_starlight";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/dev_guides/courses.mdx": {
 	id: "ru/dev_guides/courses.mdx";
   slug: "ru/dev_guides/courses";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/dev_guides/podlodka_techlead_7.mdx": {
 	id: "ru/dev_guides/podlodka_techlead_7.mdx";
   slug: "ru/dev_guides/podlodka_techlead_7";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/dev_guides/testing_fundamentals_workshow.mdx": {
 	id: "ru/dev_guides/testing_fundamentals_workshow.mdx";
   slug: "ru/dev_guides/testing_fundamentals_workshow";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 };
 
@@ -307,12 +321,12 @@ declare module 'astro:content' {
 "en": {
 	id: "en";
   collection: "i18n";
-  data: InferEntrySchema<"i18n">
+  data: any
 };
 "ru": {
 	id: "ru";
   collection: "i18n";
-  data: InferEntrySchema<"i18n">
+  data: any
 };
 };
 
@@ -320,36 +334,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = typeof import("../../src/content/config.js");
-}
-string, {
-  id: string;
-  slug: string;
-  body: string;
-  collection: "reading";
-  data: any;
-  render(): Render[".md"];
-}>;
-
-	};
-
-	type DataEntryMap = {
-		"i18n": {
-"en": {
-	id: "en";
-  collection: "i18n";
-  data: InferEntrySchema<"i18n">
-};
-"ru": {
-	id: "ru";
-  collection: "i18n";
-  data: InferEntrySchema<"i18n">
-};
-};
-
-	};
-
-	type AnyEntryMap = ContentEntryMap & DataEntryMap;
-
-	export type ContentConfig = typeof import("../../src/content/config.js");
+	export type ContentConfig = never;
 }
