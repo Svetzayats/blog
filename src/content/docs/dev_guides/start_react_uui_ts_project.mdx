@@ -1,0 +1,110 @@
+---
+title: Setting Up a React Project with TypeScript and EPAM UUI
+---
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+
+Today I set up a new project at work and wanted to document some useful configurations and non-obvious solutions I encountered.
+It is about React-based web application using TypeScript and EPAM UUI component library. We'll cover initial setup and essential configurations to improve development experience.
+
+**I'm writing this primarily as a reference for my future self, but if you're setting up a similar stack, you might find these notes helpful.**
+
+## Initial Project Setup
+EPAM UUI provides a convenient Vite-based template to kickstart your project. To create a new project, run:
+
+`npx -- degit@latest https://github.com/epam/UUI/templates/uui-vite-template my-app`
+
+<Aside title='Useful links about UUI'>
+    [EPAM UUI Documentation](https://uui.epam.com/documents?id=gettingStarted)
+
+    [UUI Github Repository](https://github.com/epam/UUI/)
+</Aside>
+
+
+## Configurations That I Like
+
+### Absolute Path Imports
+To make imports cleaner and more maintainable, let's set up absolute path imports.
+This allows to import files from the src directory without using relative paths.
+<Steps>
+1. Add the following to `tsconfig.json`:
+    ```json {3}
+    {
+      "compilerOptions": {
+        "baseUrl": "src"
+        // ... other options
+      }
+    }
+    ```
+
+2. Now instead of writing:
+
+    `import { ROUTES } from '../../../shared/constants/urls';`
+
+    We can simply use:
+
+    `import { ROUTES } from 'shared/constants/urls';`
+
+</Steps>
+
+
+### Import Sorting
+Keep our imports organized automatically with [`eslint-plugin-simple-import-sort`]( https://github.com/lydell/eslint-plugin-simple-import-sort/).
+
+<Steps>
+1. Install the plugin:
+
+    `npm install --save-dev eslint-plugin-simple-import-sort`
+
+2. Update `.eslintrc` configuration:
+
+    ```js
+        rules: {
+            // other rules
+            'simple-import-sort/imports': [
+                'warn',
+                {
+                groups: [
+                    ['^react', '^@?\\w'],
+                    // Internal packages.
+                    ['^(@epam)(/.*|$)'],
+                    // Side effect imports.
+                    ['^\\u0000'],
+                    // Imports from our modules.
+                    ['^(pages|shared|widgets)(/.*|$)'],
+                    // Parent imports. Put `..` last.
+                    ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+                    // Other relative imports. Put same-folder imports and `.` last.
+                    ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
+                    // Style imports.
+                    ['^.+\\.s?css$'],
+                    ],
+                },
+            ],
+
+            'simple-import-sort/exports': 'warn',
+        }
+        ```
+
+    Change `groups` as it is suitable for project.
+
+3. Set up VS Code to automatically sort imports on save:
+
+    Open VS Code settings (JSON) by pressing Cmd+Shift+P (Mac) or Ctrl+Shift+P (Windows/Linux) and searching for "Preferences: Open User Settings (JSON)"
+
+    Add the following configuration:
+
+    ```json
+        {
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "explicit",
+        }
+        }
+    ```
+</Steps>
+Now imports will be automatically sorted whenever we save a file.
+
+### Git Hooks with Husky and Test Coverage Checks
+Setting up pre-commit and pre-push hooks helps maintain code quality by automatically checking tests and coverage before commits are made.
+
+// TODO Add about setting up husky and adding scripts
