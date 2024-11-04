@@ -28,16 +28,32 @@ To make imports cleaner and more maintainable, let's set up absolute path import
 This allows to import files from the src directory without using relative paths.
 <Steps>
 1. Add the following to `tsconfig.json`:
-    ```json {3}
+    ```json {3-5}
     {
       "compilerOptions": {
-        "baseUrl": "src"
+        "baseUrl": ".",
+        "paths": {
+            "*": ["./src/*"]
         // ... other options
       }
     }
     ```
 
-2. Now instead of writing:
+2. Install `vite-tsconfig-paths` plugin
+
+    `npm install vite-tsconfig-paths -D`
+
+3. Add to `vite.config.ts` integration of plugin
+    ```ts title='vite.config.ts'
+        import tsconfigPaths from 'vite-tsconfig-paths';
+
+        export default {
+            // other configurations
+            plugins: [react(), tsconfigPaths(), ...other plugins ]
+        }
+    ```
+
+4. Now instead of writing:
 
     `import { ROUTES } from '../../../shared/constants/urls';`
 
