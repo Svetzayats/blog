@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+
+const localesPrefix = ['ru/'];
+const localePrefix = Astro.currentLocale === 'en' ? '' : Astro.currentLocale + '/';
+const items = await getCollection('docs', (item) => {
+    if (localePrefix) {
+        return item.slug.startsWith(localePrefix);
+    }
+
+    return !localesPrefix.some(prefix => item.slug.startsWith(prefix));
+});
+const sortedByDateItems = items.sort((a, b) => (b.data.date?.getTime() || 0) - (a.data.date?.getTime() || 0));
+const firstFourItems = sortedByDateItems.slice(0, 4).filter(Boolean);
+
+---
+<ul>
+    {firstFourItems.map(item => <li><a href={item.slug}>{item.data.title}</a></li>)}
+</ul>

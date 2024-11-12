@@ -18,6 +18,7 @@ hero:
 ---
 
 import { Card, CardGrid, Badge, Icon } from '@astrojs/starlight/components';
+import RecentPosts from '../../components/RecentPosts.astro'
 
 <div className='block'>
 ### Currently into
@@ -29,17 +30,21 @@ import { Card, CardGrid, Badge, Icon } from '@astrojs/starlight/components';
 </div>
 
 <CardGrid stagger>
+    <Card title="What You'll Find Here" icon="seti:code-search">
+        Notes about web development and learning different things – from cognitive research and
+        experiments to embroidery tricks. Information is separated into sections by theme so you can
+        dive into what's interesting for you. [Explore →](/blog/about/)
+    </Card>
+
 <Card title="Let's Get Linked" icon="linkedin">
   I’m a **frontend developer** with a passion for creating effective UI solutions. My current stack includes **React** and 
   **TypeScript**, but I’m always open to learning new things and trying out new technologies. I also mentor a JavaScript 
   course at RSSchool and I'm preparing to speak at a tech conference. 
   [Connect](https://www.linkedin.com/in/svetlana-zayats/) if you’d like to discuss tech, non-tech topics, or suggest a job 👩‍💻
 </Card>
-  <Card title="What You'll Find Here" icon="seti:code-search">
-    Notes about web development and learning different things – from cognitive research and
-    experiments to embroidery tricks. Information is separated into sections by theme so you can 
-    dive into what's interesting for you. [Explore →](/blog/about/)
-  </Card>
+    <Card title='Recent posts' icon='pen'>
+        <RecentPosts />
+    </Card>
 
   <Card title="Reviews on Books" icon="open-book">
     And not just books – sometimes movies, shows, and anime too. [Check out the latest →](/blog/content_list/reading/) 
