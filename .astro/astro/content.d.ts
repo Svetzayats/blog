@@ -179,6 +179,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdx"] };
+"blog/2024_11_18.mdx": {
+	id: "blog/2024_11_18.mdx";
+  slug: "blog/2024_11_18";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
 "content_list/index.mdx": {
 	id: "content_list/index.mdx";
   slug: "content_list";
@@ -280,6 +287,13 @@ declare module 'astro:content' {
 "ru/blog/2024_11_04.mdx": {
 	id: "ru/blog/2024_11_04.mdx";
   slug: "ru/blog/2024_11_04";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
+"ru/blog/2024_11_18.mdx": {
+	id: "ru/blog/2024_11_18.mdx";
+  slug: "ru/blog/2024_11_18";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">

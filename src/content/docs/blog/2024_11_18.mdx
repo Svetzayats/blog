@@ -1,0 +1,29 @@
+---
+title: No more absolute for overlapping
+date: 2024-11-18
+tags:
+    - styles
+    - layout
+    - grid
+---
+
+Big thanks to Wes Bos for sharing examples of how to avoid using `position: absolute` for overlapping elements: [tweet 1](https://x.com/wesbos/status/1834242925401694490) and [tweet 2](https://x.com/wesbos/status/1834640452865101907).
+I've already applied this approach three times in my current project while reworking old elements, and it looks so much better now. :)
+
+
+For more details, check out Wes Bos's Twitter posts, where he shares video examples, or head over to [CSS-Tricks](https://css-tricks.com/positioning-overlay-content-with-css-grid/).
+
+
+I’m a big fan of named `grid-area`, so my favorite approach is to turn the parent component
+into a grid and define the layout with `grid-template-areas: 'stack'`.
+Then, for the child components that need to overlap, I simply assign `grid-area: stack`.
+
+(The name of the `grid-area` can be anything you like, as long as it’s consistent across the elements you’re working with.)
+
+
+Alternatively, you can skip the named `grid-area` and directly set the same `grid-row-start` and `grid-column-start` for the elements you want to overlap. Like this:
+
+```css
+.container > * {
+  grid-area: 1 / 1;
+}
