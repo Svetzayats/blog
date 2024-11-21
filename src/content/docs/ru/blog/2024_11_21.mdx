@@ -1,0 +1,38 @@
+---
+title: Сегодня узнала, что можно в ref передавать callback
+date: 2024-11-21
+tags:
+- react
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+От моего внимания как-то ускользнуло, что в React можно передавать функцию-callback как `ref` для элемента, а не только объект,
+созданный с помощью useRef.
+
+```tsx
+const scroller = (node: HTMLDivElement) => {
+    if (!node) return;
+    node.scrollIntoView({ behavior: "smooth" });
+};
+
+// somewhere in component
+ <div ref={scroller} />
+```
+
+Как это работает:
+- Когда элемент добавляется в DOM, React вызывает функцию-callback и передает в неё DOM-узел как аргумент.
+- Когда элемент удаляется из DOM, React вызывает эту функцию с аргументом null.
+- Callback также вызывается каждый раз, когда передается новая функция (например, при каждом рендере, если она определена как обычная функция).
+
+
+<Aside title="Полезное">
+    - [Документация](https://react.dev/reference/react-dom/components/common#ref-callback)
+    - [Пример использования — подскролл к последнему сообщению в чате](https://x.com/mhdcode/status/1859581837569355850)
+    - [Пример использования — список](https://react.dev/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
+</Aside>
+
+
+
+
+
