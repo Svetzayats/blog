@@ -1,0 +1,60 @@
+---
+title: Boxes in boxes, Or what occupied my mind lately
+date: 2024-11-27
+tags:
+    - javascript
+    - codewars
+    - puzzles
+---
+
+I sometimes solve puzzles on Codewars and LeetCode, and recently, I came across a kata called
+["Boxes in boxes"](https://www.codewars.com/kata/63a2cf5bd11b1e0016c84b5a/javascript).
+
+
+It’s not a particularly difficult problem, but I struggled with it.
+My first issue with puzzles like this is that I’m not great at spatial reasoning.
+Because of this, I couldn’t immediately understand the pattern for drawing the boxes.
+
+
+The second problem was that even after I figured out the pattern, I couldn’t implement it.
+In my mind, I thought I needed to redraw the boxes I had already calculated.
+So, in my understanding I need to start by drawing one box and then try to add the lines for two boxes,
+and repeat already drawn boxes.
+But I just couldn’t wrap my head around it.
+
+
+Eventually, I was forced to check other solutions
+(after obsessing over it for two evenings without making any progress).
+And guess what? I still didn’t get it.
+I mean, I could look at the solution, understand the code, and see what it was doing,
+but I just couldn’t grasp how it produced the final result.
+
+In the end, I wrote my own solution based on the ideas from another one I found,
+but I needed to debug it carefully to fully grasp the concept.
+
+
+I’m leaving code with my comments here as a reminder of the solution and my understanding.
+
+```js
+function draw(n) {
+    // all for one box, our start
+    let res = [" _ ", "|_|"];
+
+    for (let i = 1; i < n; i++) {
+        res = [
+            // top line - just add tops of boxes
+            ' _' + res[0],
+            // draw existing boxes without left border (top 1/2 part is repeat existing but partially)
+            ...res.slice(1).map(str => '|  ' + str.slice(1)),
+            // draw existing with left border and without bottom
+            ...res.slice(1, -1).map(str => '| ' + str),
+            // draw bottom
+            '|_' + res[res.length-1],
+        ]
+    }
+
+    return res.join('\n');
+}
+```
+
+I hope it will never be asked on interview 🤪
