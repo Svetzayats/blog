@@ -1,0 +1,82 @@
+---
+title: Patterns
+sidebar:
+    order: 2
+---
+import { Aside } from '@astrojs/starlight/components';
+
+Design patterns are proven solutions to common software design challenges.
+They allow us to leverage the collective wisdom of the developer community and adopt established approaches to recurring problems.
+
+
+If you're looking to dive deeper into patterns, I highly recommend the fantastic resource
+[Refactoring Guru](https://refactoring.guru/design-patterns).
+In this guide, I’ll share some of the patterns I’ve found particularly useful in my work as a frontend engineer.
+
+## Adapter
+The Adapter pattern allows objects with incompatible interfaces to work together by translating one interface into another.
+This is especially useful when integrating systems or components that were not designed to interact with each other.
+
+### Applications in my work
+Data Transformation: Translating backend data structures into a format suitable for the frontend (and vice versa). For example, converting a complex API response into a simplified object used in UI components.
+
+<Aside type={'tip'} title={'Check this out'}>
+    For a hands-on example of the Adapter pattern, explore [this task on Codewars](https://www.codewars.com/kata/56919e637b2b971492000036/javascript ).
+
+    To dive deeper into the Adapter pattern, check out the [detailed explanation on Refactoring.Guru](https://refactoring.guru/ru/design-patterns/adapter ).
+</Aside>
+
+
+## Visitor
+The Visitor pattern provides **a way to add new operations to objects without modifying their classes**.
+A Visitor class encapsulates methods to process different types of entities, enabling new functionality while adhering to the Open/Closed Principle.
+
+In this pattern, each entity class implements a method like `accept(visitor)`.
+This method delegates control to the Visitor, calling the appropriate operation based on the entity type. This allows entities to remain unchanged while enabling extensibility through the Visitor.
+
+
+### Classic Example
+A common use case is implementing data export functionality.
+Each node in a structure might require a different export behavior,
+and the Visitor encapsulates all knowledge about exporting.
+The Visitor doesn't handle the classification or specifics of the nodes directly;
+instead, **each node determines how it should interact with the Visitor**.
+
+### Applications in my work
+In our application we have maps with different types of nodes on it and filters for nodes.
+- Filters for map by different parameters: Instead of embedding filtering logic within multiple components, you could create a FilterVisitor.
+The visitor would contain all the filtering logic, and individual filters would simply invoke the appropriate method based on their specific behavior.
+- Map Functionality: The Visitor pattern could be used for node initialization or for injecting data into nodes dynamically.
+This approach centralizes logic and reduces duplication.
+
+
+<Aside type={'tip'} title={'Check this out'}>
+    For a hands-on example of the Visitor pattern, check out [this task on Codewars](https://www.codewars.com/kata/5682e646d5eddc1e21000017 ).
+
+    For a deeper dive into the Visitor pattern, see [Refactoring.Guru’s detailed explanation](https://refactoring.guru/ru/design-patterns/visitor ).
+</Aside>
+
+
+## Strategy
+The Strategy pattern allows you to **define a family of algorithms, encapsulate each one in a separate class, and make them interchangeable**.
+It enables a class to delegate specific functionality to a dynamically assigned "strategy," making it possible to change the behavior of a system at runtime.
+
+A main class delegates specific functionality to a "strategy" class, which defines how the functionality should be executed.
+By encapsulating these variations into separate classes, you can dynamically switch strategies without modifying the main class.
+
+### Classic Example
+Error Handling: Different types of errors might require unique processing strategies.
+
+### Applications in my Work
+In our application we have different types of reservations that user can create, also user can
+switch type of reservation while creation.
+- Dynamic Logic Handling: Configurable logic, such as handling reservations differently based on specific criteria, can be extracted into strategies.
+This allows for clear separation of concerns and dynamic behavior adjustments.
+
+<Aside type={'tip'} title={'Check this out'}>
+    For a practical example of the Strategy pattern, try solving [this task on Codewars](https://www.codewars.com/kata/5682e809386707366d000024/javascript ).
+
+    For more detailed insights into the Strategy pattern, visit the [Refactoring.Guru page](https://refactoring.guru/ru/design-patterns/strategy).
+</Aside>
+
+
