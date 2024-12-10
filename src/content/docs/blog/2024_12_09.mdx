@@ -1,0 +1,27 @@
+---
+title: HOC or not HOC?
+date: 2024-12-10
+tags:
+    - javascript
+    - react
+    - pattern
+---
+
+In a set of katas for exploring patterns, there's one about HOCs:
+[truncate paragraph with HOC in React](https://www.codewars.com/kata/5a667bf8e6be382ecd000102).
+Recently, I’ve also been diving into the Decorator Pattern,
+and in React, an HOC could be considered an example of a Decorator.
+
+
+**But is the HOC still a thing?**
+
+
+I often come across HOCs in codebases that are 3–4 years old (or older),but I rarely see them in new projects.
+In the old React documentation, there was even a [dedicated page about HOCs](https://legacy.reactjs.org/docs/higher-order-components.html), complete with examples.
+But in the shiny new React documentation, HOCs are nowhere to be found.
+
+It seems like custom hooks have taken over this territory and mostly replaced HOCs.
+What can you do with an HOC that you can’t achieve with a custom hook?
+
+**Personally, I prefer custom hooks—or even classes with their own logic**. It is more obvious
+and clear for me.
