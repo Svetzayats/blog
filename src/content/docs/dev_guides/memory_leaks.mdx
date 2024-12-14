@@ -1,0 +1,77 @@
+---
+title: Memory leaks
+---
+import { Aside } from '@astrojs/starlight/components';
+
+In my experience, I have run into fixing memory leaks a couple of times, and each time it was very difficult.
+Task manager in browser, Memory in Performance tab, and the Memory tab are great tools accessible to us,
+but using them requires a skill (and sometimes luck). I plan to dive into the topic of memory leaks:
+how to understand that we have problems; how to find the source of the leak and why leaks can happen, and with
+that knowledge, we can prevent them.
+
+<Aside type={'caution'} title={'Work in progress'}>
+    Note: the guide is being created as I delve into the materials.
+    For now, it is more of a sketch or a draft.
+</Aside>
+
+## Useful and interesting resources
+
+### Devtools
+- [Section about Memory in Devtools](https://developer.chrome.com/docs/devtools/memory-problems/get-started) —
+theory about memory and leaks, along with an overview of tools in Chrome DevTools. Read the entire section 😉
+- [Debugging memory leaks - HTTP 203](https://www.youtube.com/watch?v=YDU_3WdfkxA) —
+in this video, Jake and Surma explore how to debug and fix memory leaks in their own code
+
+### How Garbage Collector works and what about V8
+- [Grokking V8 closures for fun (and profit?) by Vyacheslav Egorov (2012-14)](https://mrale.ph/blog/2012/09/23/grokking-v8-closures-for-fun.html) —
+how V8 works with closures and its performance. Low-level details about implementation, cool schemes. Key takeaways:
+    - V8 creates context while entering function, not when the closure is created
+    - When functions are nested, contexts can reference each other and form references chains
+
+### Разбор кейсов
+- [JavaScript closure vs. object look-up performance by Marijn Haverbeke (2012)](https://marijnhaverbeke.nl/blog/closure-vs-object-performance.html) —
+the author explains why they decided to rewrite CodeMirror from using a single large closure to store everything to
+using objects with separated functionality. Article  [Grokking V8 closures for fun (and profit?) by Vyacheslav Egorov (2012-14)](https://mrale.ph/blog/2012/09/23/grokking-v8-closures-for-fun.html), by
+the way, is a response to this blog post.
+- [A surprising JavaScript memory leak found at Meteor by David Glasser (2013)](https://point.davidglasser.net/2013/06/27/surprising-javascript-memory-leak.html) —
+a great investigation into a real memory leak in a Meteor app with an example of fix. The issue was related to
+closures and a large object in memory that was not cleared by the Garbage Collector, even though it was no longer in use.
+- [Garbage collection and closures by Jake Archibald (2024)](https://jakearchibald.com/2024/garbage-collection-and-closures/) —
+another example of a memory leak caused by closures: how closures can prevent the Garbage Collector
+from clearing unnecessary objects from memory.
+As a bonus, links to browser bug reports addressing this behavior.
+
+### Утечки в React
+- [Sneaky React Memory Leaks: How `useCallback` and closures can bite you by Kevin Schiener (2024)](https://www.schiener.io/2024-03-03/react-closures) —
+in our React code, there are plenty of closures (even if we don't realize it) and in most cases, everything works fine.
+But when we use `useCallback` to store a reference to a function and avoid its re-creation between renders — there could be
+some issues. Kevin gives a detailed explanation what happens and shares some recommendations.
+- [Sneaky React Memory Leaks II: Closures Vs. React Query by Kevin Schiener (2024)](https://www.schiener.io/2024-05-29/react-query-leaks) —
+another example showing how a memory leak can occur, this time using React Query. The recommendation is to simply extract everything related
+to `useQuery` into a custom hook, because each hook creates its own context for closures.
+- [Sneaky React Memory Leaks: How the React compiler won't save you by Kevin Schiener (2024)](https://www.schiener.io/2024-07-07/react-closures-compiler) —
+React Compiler solves part of the problems for us with closures and memory leaks, but problems can still arise
+— Kevin highlights the issues and suggest using `bind` to prevent them.
+
+## How to find a leak before your user does
+// TODO
+
+
+## How to find problems in your code and fix it
+// TODO
+
+
+## Related theory
+// TODO
+
+### Closures
+// TODO
+
+
+### Garbage Collector
+// TODO
+
+
+
+
+

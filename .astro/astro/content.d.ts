@@ -256,6 +256,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdx"] };
+"dev_guides/memory_leaks.mdx": {
+	id: "dev_guides/memory_leaks.mdx";
+  slug: "dev_guides/memory_leaks";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
 "dev_guides/patterns.mdx": {
 	id: "dev_guides/patterns.mdx";
   slug: "dev_guides/patterns";
@@ -378,6 +385,13 @@ declare module 'astro:content' {
 "ru/dev_guides/courses.mdx": {
 	id: "ru/dev_guides/courses.mdx";
   slug: "ru/dev_guides/courses";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
+"ru/dev_guides/memory_leaks.mdx": {
+	id: "ru/dev_guides/memory_leaks.mdx";
+  slug: "ru/dev_guides/memory_leaks";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
