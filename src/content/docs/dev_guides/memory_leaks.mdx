@@ -28,7 +28,7 @@ how V8 works with closures and its performance. Low-level details about implemen
     - V8 creates context while entering function, not when the closure is created
     - When functions are nested, contexts can reference each other and form references chains
 
-### Разбор кейсов
+### Cases investigations
 - [JavaScript closure vs. object look-up performance by Marijn Haverbeke (2012)](https://marijnhaverbeke.nl/blog/closure-vs-object-performance.html) —
 the author explains why they decided to rewrite CodeMirror from using a single large closure to store everything to
 using objects with separated functionality. Article  [Grokking V8 closures for fun (and profit?) by Vyacheslav Egorov (2012-14)](https://mrale.ph/blog/2012/09/23/grokking-v8-closures-for-fun.html), by
@@ -41,7 +41,7 @@ another example of a memory leak caused by closures: how closures can prevent th
 from clearing unnecessary objects from memory.
 As a bonus, links to browser bug reports addressing this behavior.
 
-### Утечки в React
+### React Memory Leaks
 - [Sneaky React Memory Leaks: How `useCallback` and closures can bite you by Kevin Schiener (2024)](https://www.schiener.io/2024-03-03/react-closures) —
 in our React code, there are plenty of closures (even if we don't realize it) and in most cases, everything works fine.
 But when we use `useCallback` to store a reference to a function and avoid its re-creation between renders — there could be
