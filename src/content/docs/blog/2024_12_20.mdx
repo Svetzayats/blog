@@ -1,0 +1,60 @@
+---
+title: 0 days without mistake with SVG background
+date: 2024-12-20
+tags:
+  - css
+  - SVG
+
+---
+import { Aside, Badge } from '@astrojs/starlight/components';
+
+
+<Aside title={'TLDR'}>
+    If you have SVG with defined width on it, for using as background you either need to
+    set `background-size: 100% 150px` (second value is a height, put there what works for you) or `background-size: auto 150px` +
+    `background-repeat: repeat-x;`
+
+    [Codesandbox](https://codesandbox.io/p/sandbox/jg9mzv) with examples how SVGs look with different css options.
+</Aside>
+
+We have a background SVG at the top of our website: it is SVG image on top,
+but the main part is just a gray background.
+
+We use the following css for that:
+```css
+.container {
+    background-image: url(path/to/our.svg);
+    background-repeat: no-repeat;
+    background-size: 100% 144px;
+}
+```
+It works fine, but holidays are coming and our designer suggested to use a more festive background
+(and of course add little snow, but there was no problem with snow). Additionally designer requested
+not to stretch holiday image, so I came up with the following css
+
+```css
+.container {
+    background-image: url(path/to/holiday.svg);
+    background: no-repeat;
+    background-size: auto 144px;
+    background-position: left top;
+}
+```
+
+It went to testing, then to production, and a couple of days after I have message from colleague: hey,
+could we do something with holiday background on wide screens?
+It was a disaster: on wide screens (more than 2500px) our background ends on 2000px and the rest is left
+as an empty gray space!
+
+Fix is really simple:
+```css {3}
+.container {
+    background-image: url(path/to/holiday.svg);
+    background: repeat-x;
+    background-size: auto 144px;
+    background-position: left top;
+}
+```
+Just note: 100% or repeat.
+
+

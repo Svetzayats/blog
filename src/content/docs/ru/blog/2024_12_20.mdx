@@ -1,0 +1,58 @@
+---
+title: 0 дней без ошибок с SVG background
+date: 2024-12-20
+tags:
+  - css
+  - SVG
+
+---
+import { Aside } from '@astrojs/starlight/components';
+
+
+<Aside title={'TLDR'}>
+    Если вы используете в качестве фона SVG с заданной шириной, то вам нужно либо установить `background-size: 100% 150px` (второе значение — высота, укажите нужную), чтобы картинка
+    растягивалась, либо `background-size: auto 150px` +
+    `background-repeat: repeat-x;` — чтобы она повторялась.
+
+    [Codesandbox](https://codesandbox.io/p/sandbox/jg9mzv) с примерами, как SVG выглядит с разными опциями
+</Aside>
+
+У нас SVG в качестве фона сверху нашего сайта, основной фон — просто серый.
+Для картинки у нас такой css:
+```css
+.container {
+    background-image: url(path/to/our.svg);
+    background-repeat: no-repeat;
+    background-size: 100% 144px;
+}
+```
+Всех всё устраивает, однако подкрались праздники и дизайнерка предложила обновить картинку на более праздничную
+(и, конечно, добавить снег, но с ним как раз проблем не было). Дизайнерка попросила не растягивать
+новую картинку (как мы делаем обычно, просто растягивая её до 100%), так что обновила css:
+
+```css {4,5}
+.container {
+    background-image: url(path/to/holiday.svg);
+    background: no-repeat;
+    background-size: auto 144px;
+    background-position: left top;
+}
+```
+Тестировщики протестировали, и всё улетело в предпраздничный релиз.
+
+Пару дней спустя мне написал коллега: можем ли мы что-то сделать с нашим праздничным фоном на широких экранах?
+Я проверила, и это была катастрофа: на широких экранах (более чем 2500px) наш фон заканчивался на 2000px, и дальше
+справа было просто серое пятно.
+
+Фикс был быстрый и простой:
+```css {3}
+.container {
+    background-image: url(path/to/holiday.svg);
+    background: repeat-x;
+    background-size: auto 144px;
+    background-position: left top;
+}
+```
+Просто не забывайте: либо 100%, либо repeat.
+
+
