@@ -221,6 +221,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdx"] };
+"content_list/reading/guns_germs_and_steel_diamond.mdx": {
+	id: "content_list/reading/guns_germs_and_steel_diamond.mdx";
+  slug: "content_list/reading/guns_germs_and_steel_diamond";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
 "content_list/reading/index.mdx": {
 	id: "content_list/reading/index.mdx";
   slug: "content_list/reading";
@@ -364,6 +371,13 @@ declare module 'astro:content' {
 "ru/blog/2024_12_20.mdx": {
 	id: "ru/blog/2024_12_20.mdx";
   slug: "ru/blog/2024_12_20";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
+"ru/content_list/reading/guns_germs_and_steel_diamond.mdx": {
+	id: "ru/content_list/reading/guns_germs_and_steel_diamond.mdx";
+  slug: "ru/content_list/reading/guns_germs_and_steel_diamond";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
