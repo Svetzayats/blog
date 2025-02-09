@@ -1,0 +1,91 @@
+---
+title: Do you like to solve puzzles on the interview?
+date: 2025-02-06
+tags:
+  - puzzle
+  - interview
+---
+import { Aside } from '@astrojs/starlight/components';
+
+I like solving problems, especially if it is not about losing context or something about classes,
+and more about logic and data structure. In general, I almost always excited about live-coding,
+especially when there is interesting problem.
+
+That's why when I saw announcement of a lecture about mathematical problems from IT-interviews with
+math teacher Boris Trushin (famous for his [YouTube channel where he explains math in a very understandable way]
+(https://www.youtube.com/@trushinbv)) I decided to attend it.
+
+It was interesting, we discussed 7 problems (a couple of them were not from interviews, but that's okay).
+I noted  what could help me find solutions to similar problems in the future ;)
+
+<Aside title="Summary">
+    - trying to solve for easiest case
+    - try to find out what is the easiest case for us and how to reach it
+    - ask an additional question, that can help find the answer to the main one
+</Aside>
+
+### Blue-eyed islanders
+You can find puzzle [here](https://www.popularmechanics.com/science/math/a26557/riddle-of-the-week-27-blue-eyed-islanders/).
+
+##### Approach
+Try to solve for easiest case when there is only 1 person with blue eyes. Then with 2 blue-eyed islanders.
+
+Note, what moved all this guys to solve the riddle about eye color (common knowledge about 1 person with a
+blue eyes)
+
+### 2 eggs and 100 floors
+Suppose that we wish to know which stories in a 100-storey building are safe to drop eggs from, and which will cause the eggs to break on landing. What strategy should be used to drop eggs such that a total number of drops in the worst case is minimized and we find the required floor
+
+- An egg that survives a fall can be used again.
+- A broken egg must be discarded.
+- The effect of a fall is the same for all eggs.
+- If an egg breaks when dropped, then it would break if dropped from a higher floor.
+- If an egg survives a fall then it would survive a shorter fall.
+
+##### Approach
+When one egg is broken, we need to iterate floors 1 by 1 with second.
+We can try to find equal range that will be okay.
+
+But with equal ranges (check n, after than 2n, then 3n) it means for second egg the number of tests
+does not decrease (it always remains n - 1). It should be optimized.
+
+Try to imagine ideal case: in last attempt we need to test only 1 floor. Use it as a starting point
+and try to figure out how to reach it.
+
+### Circular train
+You find yourself in a train made up of some unknown number of connected train cars that join to form a circle. It’s the ouroboros of transportation. Don’t think too hard about its practical uses.
+
+From the car you’re in, you can walk to a car on either side — and because the train is a circle, if you walk far enough eventually you’ll wind up back where you started. Each car has a single light that you can turn on and off. Each light in the train is initially set on or off at random.
+
+What is the most efficient method for figuring out how many cars are in the train?
+##### Approach
+[Explanation in Russion](https://youtu.be/YMYjjoiE0xI?si=_32Eaxq6Qlg1o81M), and again we start with the simpliest case -
+1 car, and then try to solve it for 2, 3... cars. We need to find out
+what might serve as a marker of visited car.
+
+### Light and 100 prisoners
+100 prisoners are sentenced to life in prison in solitary confinement. Upon arrival at the prison, the warden proposes a deal to keep them entertained, certain that the prisoners are too dim-witted and impatient to accomplish it.
+
+The warden has a large bowl containing the cell numbers of all the prisoners. Each day he randomly chooses one cell from the bowl, the corresponding prisoner is taken to the interrogation room, and the cell number is returned to the bowl.
+
+While in the interrogation room, the prisoner will not be allowed to touch anything except the light switch, which the prisoner may choose to turn on or off.
+
+The prisoner may make the assertion that all 100 prisoners have been in the room. If the prisoner’s assertion is correct, all prisoners will be released. If the prisoner is incorrect, the game is over and their chance to be freed is gone.
+
+The prisoners are given one meeting to discuss a strategy before their communication is completely severed. What strategy should they adopt in order to ensure, with 100% certainty, that one of them will guess correctly and all be freed?
+
+The initial state of the light is OFF when the first prisoner enters the room.
+##### Approach
+[Explanation in Russion](https://youtu.be/AD4TmvJhNYY?si=xIt4fgb8O7UVOWlr), you should think about 2 things:
+- we need person who will be responsible for counting (counter)
+- how to ensure that every prisoner is counted only once
+
+
+
+
+
+
+
+
+
+

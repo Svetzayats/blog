@@ -221,6 +221,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdx"] };
+"blog/2025_02_06.mdx": {
+	id: "blog/2025_02_06.mdx";
+  slug: "blog/2025_02_06";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
 "content_list/index.mdx": {
 	id: "content_list/index.mdx";
   slug: "content_list";
@@ -389,6 +396,13 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdx"] };
+"ru/blog/2025_02_06.mdx": {
+	id: "ru/blog/2025_02_06.mdx";
+  slug: "ru/blog/2025_02_06";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
 "ru/content_list/reading/guns_germs_and_steel_diamond.mdx": {
 	id: "ru/content_list/reading/guns_germs_and_steel_diamond.mdx";
   slug: "ru/content_list/reading/guns_germs_and_steel_diamond";
@@ -413,6 +427,13 @@ declare module 'astro:content' {
 "ru/content_list/reading/unbearable_kundera.mdx": {
 	id: "ru/content_list/reading/unbearable_kundera.mdx";
   slug: "ru/content_list/reading/unbearable_kundera";
+  body: string;
+  collection: "docs";
+  data: InferEntrySchema<"docs">
+} & { render(): Render[".mdx"] };
+"ru/dev_guides/code-style.mdx": {
+	id: "ru/dev_guides/code-style.mdx";
+  slug: "ru/dev_guides/code-style";
   body: string;
   collection: "docs";
   data: InferEntrySchema<"docs">
