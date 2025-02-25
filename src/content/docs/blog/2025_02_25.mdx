@@ -1,0 +1,56 @@
+---
+title: The big re-renders myth
+date: 2025-02-25
+tags:
+  - react
+---
+import { Aside } from '@astrojs/starlight/components';
+
+Have you ever heard that writing code like this:
+
+```jsx
+    <Component levels={[1, 2, 3]} />
+```
+is bad practice because the levels array is recreated in JSX every time,
+causing unnecessary re-renders of `Component`?
+And that you should use useMemo (like `const levels = useMemo(() => [1, 2, 3], [])`)
+or declare it outside the component?
+
+**I’ve heard this advice many times.
+And I followed it.**
+
+Even when I encountered cases where passing a ref object as a prop and then updating
+the ref didn't trigger a re-render, I didn't question it. I just hadn't connected the dots —
+if a component always re-renders when its props change, then it should work the same
+way with ref, right?
+
+Now, while reading Advanced React by Nadia Makarevich, I came across one of
+the most common misconceptions in React:
+> The big re-renders myth: Component re-renders when its props change.
+
+**React updates when a state update is triggered**. In that case, it will re-render
+all nested components, regardless of whether their props have changed.
+
+> In the context of re-renders, whether props have changed or not on a component matters
+only in one case: if the said component is wrapped in the React.memo higher-order component.
+
+That's it! We need to shift our thinking paradigm — from focusing  on
+prop changes to analyzing state updates.
+
+<Aside title="Summary">
+    React updates when a state update is triggered.
+    Props changes matter in case when component is wrapped in the React.memo.
+
+    Watch you state 😎
+</Aside>
+
+P.S. For constant arrays/objects, I personally prefer defining them in a separate
+`constants.ts` file. But that’s a matter of taste, not re-renders.
+
+
+
+
+
+
+
+
