@@ -1,0 +1,88 @@
+---
+title: When you need re-render, but it doesn't happen...
+date: 2025-03-14
+tags:
+  - react
+  - react-router
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside title='TL;DR'>
+    If component should re-render on url changes — use useLocation or useParams.
+    useHistory will not help you, because history object is stable reference,
+    so all pushes and changes are not tracked by React.
+</Aside>
+
+I already have had this issue and was surprised by this behaviour, but I forgot this —
+and wasted 2 hours on debugging. I suspected component's library, checked contexts, and tried
+to find problems in composition.
+
+So, what happened? In our `App.tsx`:
+```jsx
+<Router history={history}>
+    <UuiContext.Provider value={services}>
+        <Header />
+        <Routes />
+        <Footer />
+    </UuiContext.Provider>
+</Router>
+```
+
+In `Header.tsx` — navigation:
+```jsx
+// it's component from library, responsible for highlighting active menu item
+// use uuiContext from UuiContext.Provider and check is link active using history
+<MainMenu>
+    <MainMenuButton caption='Home' link={{pathname: '/' } />
+    <MainMenuButton caption='Dashboard' link={{pathname: '/dashboard' } />
+</MainMenu>
+```
+And it works... almost. When you click on buttons in MainMenu url is updated, content is re-rendered.
+But there is no highlighting for active menu item in MainMenu.
+
+Started with `MainMenu.tsx`: add breakpoint in function defining is link active.
+But on button clicks and changing url this function is not called. And component is not re-rendered.
+
+Add console.log('render') in `Header.tsx`. So, it is also not re-rendered.
+Despite updating the history object, and seeing those updates reflected in uuiContext.uuiRouter.history,
+nothing was triggering a re-render.
+Why don't children of UuiContext.Provider update?
+
+At this point, I went down a rabbit hole: tried to debug in contexts, because I thought that I have several
+instances and something weird happens. Found nothing, of course.
+
+But after all this debugging, idea occurred to me: content is re-rendered because of changing
+actual Route, what if I put `Header` in corresponded pages?
+It worked, but in this case `Header` unmounted and mounted each time route changes. It's not good
+user experience.
+
+And then finally I asked right thing: how React and React Router define, what should be re-rendered?
+Results of answering on this question:
+- we update history
+- history object is stable reference, so you cannot track changes with useEffect and history.location
+dependency
+- but useLocation and useParams watch changes location, and when we use them — our component
+re-renders after changes
+
+So I just added to `Header.tsx`:
+```jsx
+useLocation();
+
+//...same code
+```
+
+<Aside>
+    From documentation of React Router:
+    «Returns the current Location. This can be useful if you'd like to perform some side effect whenever it changes»
+</Aside>
+
+The most annoying thing about that I already have solved problem like this,
+but remembered about it only when I found solution again. Writing it down this time so I'll remember 🤪
+
+
+
+
+
+
+
