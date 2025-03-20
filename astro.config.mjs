@@ -5,7 +5,6 @@ import starlightBlog from 'starlight-blog';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://www.svetzayats.com/',
-  base: '/blog',
 	integrations: [
 		starlight({
 			title: '🐰 Svetlana Zaiats',
