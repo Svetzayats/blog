@@ -1,0 +1,36 @@
+---
+title: Tag b or not b...
+date: 2025-04-07
+tags:
+  - HTML
+  - semantic
+  - tag
+---
+
+I've been refactoring our codebase, and it seems like my colleagues from the past were very fond
+of the
+`<b>` tag. They've used it a lot. I am not a big fan, especially of code like this:
+
+```css
+.component b {
+    font-weight: normal;
+}
+```
+
+But maybe there is some reason why these guys applied it everywhere? Let's research a little!
+
+
+### `<b>` now
+I knew that `<b>` was for Bold. As I found out, now this is not the case. The [HTML5 specification](https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-b-element) says:
+> The b element represents a span of text to which attention is being drawn for utilitarian purposes without conveying any extra importance and with no implication of an alternate voice or mood, such as key words in a document abstract, product names in a review, actionable words in interactive text-driven software, or an article lede.
+
+And adds:
+> The b element should be used as a last resort when no other element is more appropriate.
+
+For me, it is a really confusing tag now: there are some ideas about appearance (and browsers
+support it), but `<b>` is not about appearance. Issues with this tag are presented in the [W3C
+article "Using `<b>` and `<i>` elements"](https://www.w3.org/International/questions/qa-b-and-i-tags).
+
+
+I plan to get rid of `<b>` in most places of my code and try to use `h1-h6`, `em`, `strong`
+or `mark` — a pretty wide choice!
