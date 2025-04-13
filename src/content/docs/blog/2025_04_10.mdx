@@ -1,0 +1,63 @@
+---
+title: First impressions of using CursorAI
+date: 2025-04-10
+tags:
+  - Cursor
+  - AI
+  - diagram
+---
+import { Aside } from '@astrojs/starlight/components';
+
+I've been using Cursor for 3 weeks, and I'm really impressed. Of course, it is not ideal and it
+doesn't replace a human developer (for now), but it can help in a lot of ways.
+
+<Aside title={'TLDR'}>
+    - Use AI for writing tests, but add clear instructions
+    - Generating types from response is very handy
+    - Get explanatory diagrams in a snap
+</Aside>
+
+My favorite uses for it are writing tests with instructions, creating TS types, and
+drawing diagrams. Let's look closer at each case.
+
+## Writing tests
+Not all developers love to write unit and integration tests. I personally lose my inspiration
+when I need to create a lot of mocks, do some routine tasks for preparing the test environment and
+try to make everything work with components or other libraries.
+
+And that's the place where AI shines! Of course not without a helping hand, but...
+
+**How I improved results of generation**
+- created mdx files with instructions for writing tests with examples (separate files
+for unit and integration tests)
+- described the flow: AI ought to write tests, after that run them and check results. If there are
+failed tests, AI fixes them
+- run command `write tests for ...` and add relevant instructions to the context
+
+Of course, there is still a lot of work with reviewing, but with mocks and setting up
+environments it helps a lot.
+
+## Generating types
+
+When you get a new endpoint and add it to your application, you need to describe types. In all our
+projects we use TypeScript, and before starting to use AI I created types manually (there is
+Swagger only on some of the projects). But now... I just need to give the API response to AI and
+describe what it is and some constraints — and after a few minutes I have generated types. There
+is room for improvement, but it speeds me up a lot.
+
+## Diagrams
+I love diagrams, and I believe that it is easier to understand processes and technical details
+from diagrams and schemes, not from plain text. And I explored a whole new world for me with
+this prompt: `@project explain how is ___ implemented` and `draw a scheme of how ____ works`.
+I can read and have a mermaid diagram (I just copy and paste in an online mermaid editor) in front of
+my eyes — it has simplified a lot.
+
+
+<Aside title="Summary" type={'tip'}>
+    For now AI helps a lot, but it is very much like a junior developer. If you give it very clear and
+    accurate instructions — it will do the work. But sometimes it doesn't know something and wants to
+    do less.
+
+    We need to develop our review mindset and our expertise to control AI and create
+    effective and maintainable solutions with a helping hand from technologies.
+</Aside>
