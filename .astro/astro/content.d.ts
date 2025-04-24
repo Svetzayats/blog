@@ -473,13 +473,6 @@ declare module 'astro:content' {
   collection: "docs";
   data: InferEntrySchema<"docs">
 } & { render(): Render[".mdx"] };
-"ru/dev_guides/code-style.mdx": {
-	id: "ru/dev_guides/code-style.mdx";
-  slug: "ru/dev_guides/code-style";
-  body: string;
-  collection: "docs";
-  data: InferEntrySchema<"docs">
-} & { render(): Render[".mdx"] };
 "ru/dev_guides/content_listing_in_starlight.mdx": {
 	id: "ru/dev_guides/content_listing_in_starlight.mdx";
   slug: "ru/dev_guides/content_listing_in_starlight";
