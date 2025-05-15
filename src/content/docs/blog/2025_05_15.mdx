@@ -1,0 +1,47 @@
+---
+title: When a backend developer tells you to parse a JWT token for user information...
+date: 2025-05-15
+tags:
+  - JWT
+  - cookie
+---
+import { Aside } from '@astrojs/starlight/components';
+
+I hadn't parsed a JWT token on the client before, but this week our backender said that he
+didn't have time to create a new endpoint like /user, and that I should extract user information
+from the JWT token in a cookie.
+
+<Aside title={'What is JWT?'}>
+    JWT stands for JSON Web Tokens. It is open standard defining a compact and self-contained
+    way for securely transmitting information between parties as a JSON object. You can read more
+    on  [jwt.io]
+    (https://jwt.io/introduction) (check the debugger, it is handy for parsing
+    JWTs and checking its content).
+</Aside>
+
+My first thought was: is this okay? On all projects that I've seen backend gave me endpoint like
+/user, /me, /current — and these endpoints were created for a reason, weren't they?
+
+Yes, there are reasons:
+- you cannot store sensitive, confidential information in JWT payload
+- you should be mindful of the size of the JWT (it is transmitted with cookies in every request)
+
+For example, it is not a good idea to store in JWT permissions for user and rely on it in your
+UI. Because someone can modify the token, and your application could be at risk.
+
+However, this means you can use a JWT to store some basic user information. In my current
+situation, I only need name, email and photo of the authorized user, so I started parsing JWT for
+this data and backend developer took another task.
+
+## What do you need for parsing JWT on client?
+JWTs are Base64 encoded and contain of three parts: header, payload, and signature. You can
+write your own decoding function or use one of the ready-made solutions. I checked what is there on
+the internet for handling JWT tokens on the client-side:
+- [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) — very popular library for Node.js.
+It is used for generating and verifying JWTs on the server-side, can be used on the client side.
+It’s a good library, but overkill for my case.
+- [jose](https://github.com/panva/jose) — another library for implementing JWT, it provides
+functionality for signing and verifying tokens and set of utility functions. Again: good, but
+overkill for my case.
+- [jwt-decode](https://github.com/auth0/jwt-decode) — lightweight library only for decoding
+tokens. Single-purpose, easy to use, zero dependencies — that’s the winner for today.
