@@ -7,6 +7,12 @@ tags:
 ---
 import { Aside } from '@astrojs/starlight/components';
 
+<Aside title="UPD from 16th may and spoiler" type={'caution'}>
+    In most cases, you can't parse a JWT token on the client because it's stored in an HttpOnly cookie. An HttpOnly cookie is a cookie that cannot be accessed via client-side JavaScript for security reasons.
+
+    So for now, we’re doing what I initially suggested: the backend developer is implementing an endpoint to obtain user information.
+</Aside>
+
 I hadn't parsed a JWT token on the client before, but this week our backender said that he
 didn't have time to create a new endpoint like /user, and that I should extract user information
 from the JWT token in a cookie.
