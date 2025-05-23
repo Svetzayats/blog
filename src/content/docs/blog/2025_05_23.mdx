@@ -1,0 +1,22 @@
+---
+title: Don't use display:none without serious reasons
+date: 2025-05-23
+tags:
+  - css
+  - browser
+  - bug
+---
+
+Two days before release — and guess what? Suddenly, all popovers with information about meeting rooms in our app broke and stopped displaying. We hadn’t even changed anything related to this functionality — how could this happen?
+
+### Situation
+It turned out that the popovers were broken in all browsers except Chrome. And after the latest Chrome update, they stopped working there too.
+
+### What happened?
+
+Four years ago, someone decided it was fine to hide a `<g>` element using `display: none`, but still call `node.getBoundingClientRect()` on its child elements to calculate the popover’s position.
+
+It worked… until it didn’t. Now, all modern browsers correctly return zero for the coordinates and size of any child inside a display: none element.
+
+To be honest, I didn’t want to refactor much, so I replaced `display: none` with `opacity: 0`. In this case, the element is still invisible to the user but remains in the document flow and keeps its size.
+
