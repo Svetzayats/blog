@@ -1,0 +1,36 @@
+---
+title: New Advent of Code, new attempt
+date: 2025-12-06
+tags:
+  - code
+  - solving problems
+  - leetcode
+  - advent of code
+  - monotonic stack
+  - algorithm
+  - structuredClone
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+Every year I start solving [Advent of Code](https://adventofcode.com/). 
+
+Okay, I was sure that I did it every year, but it looks like I only did it in 2021 and 2022 —
+ and after that I took a break. It seems like moving to a new country, changing jobs, and emigrating can change your memory or perspective.
+
+But nevertheless — I started to solve it this year again. And great part about it that I not only 
+have a awesome time, trying to solve problems and tickling my brain, but also I learn new things. 
+
+Discoveries at this moment:
+- The technique (or pattern, or special data structure) of a **monotonic stack** for solving problems. 
+Basically, it’s a stack (obviously) whose elements are always increasing or always decreasing. 
+I liked the explanation from [here]((https://liuzhenglaichn.gitbook.io/algorithm/monotonic-stack)) (clear example + list of related LeetCode problems) 
+and [here]((https://algo.monster/problems/mono_stack_intro)) (interactive example of building a monotonic stack + when to apply it). 
+I needed it for the Day 3 Part 2 problem, where I had to define the biggest possible number that I could construct from a sequence of numbers.
+
+- **[`structuredClone`](https://developer.mozilla.org/en-US/docs/Web/API/Window/structuredClone)** method for creating deep clones of values in JS — very handy with arrays and objects. I almost wrote the familiar `JSON.parse(JSON.stringify(arr))`, 
+but stopped for a moment and searched. I remembered that there is a newer API I can use. 
+Powerful, but with some limitations (as everything good in this world): for example, functions and DOM nodes cannot be cloned with structuredClone. 
+You can find some details about the algorithm on [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm).
+
+
