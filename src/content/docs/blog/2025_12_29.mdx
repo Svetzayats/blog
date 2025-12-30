@@ -1,0 +1,65 @@
+---
+title: Sign here please! 
+date: 2025-12-29
+tags:
+  - git
+  - github
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+In December my working laptop decided to add some fun to my life, and for whatever reason my commits 
+stopped being signed by me. I discovered it when I tried to merge approved PR for new feature, and Github 
+didn't allow me to do it. 
+
+It's always confusing when everything worked fine 2 hours ago, you didn't do anything related to 
+git or configuration of system/IDE — and somehow world changed and now you need to fix it. It's part of 
+software engineering that I enjoy ~~whe~~never. 
+
+### How to start signing commits again (for Github)
+
+1. Check if you have generated ssh key in your Github account (if you don't have one — use [Github documentation for
+generating a new one](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)). 
+
+2. Check that your git user is the one you want to sign with
+```bash
+git config user.email 
+```
+
+3. Configure signing commits in git, where path_to_ssh is something like `/Users/szaiats/.ssh/id_ed25519.pub`
+```bash
+git config --global gpg.format ssh
+git config --global user.signingkey <path_to_ssh>
+git config --global commit.gpgsign true
+```
+
+4. Configure allowed signers - put there your information `"{email} namespace=git {ssh key}"`, for example: 
+
+```bash 
+touch ~/.config/git/allowed_signers
+git config --global gpg.ssh.allowedSignersFile ~/.config/git/allowed_signers
+echo "svetzayats@gmail.com namespaces=\"git\" /Users/szaiats/.ssh/id_ed25519.pub" >> ~/.config/git/allowed_signers
+
+```
+
+5. Check settings of your IDE. I use vscode and I needed to "Enable Commit Signing" to make signed commits from 
+UI; otherwise I need always commit with -S flag: 
+```bash 
+git commit -S -m "My signed commit"
+```
+
+6. Verify that everything works 
+```bash 
+git log --show-signature -1 
+```
+This one, by the way, helps a lot in debugging why a commit might not be signed. It shows information about 
+problems if there are any. 
+
+Also you can check signature verification status on Github — in [commits section](https://docs.github.com/en/authentication/troubleshooting-commit-signature-verification/checking-your-commit-and-tag-signature-verification-status)
+
+<Aside title='Useful or interesting links'>
+- [Github documentation about signing commits](https://docs.github.com/en/authentication/managing-commit-signature-verification)
+- [Github documentation about adding ssh key for user](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+- [Blog post why shouldn't you sign commits](https://blog.glyph.im/2024/01/unsigned-commits.html) and [discussion about that](https://news.ycombinator.com/item?id=39579775)
+</Aside>
+

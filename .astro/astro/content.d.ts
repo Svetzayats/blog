@@ -156,413 +156,420 @@ declare module 'astro:content' {
   slug: "about";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2024_10_15.mdx": {
 	id: "blog/2024_10_15.mdx";
   slug: "blog/2024_10_15";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2024_10_17.mdx": {
 	id: "blog/2024_10_17.mdx";
   slug: "blog/2024_10_17";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2024_11_04.mdx": {
 	id: "blog/2024_11_04.mdx";
   slug: "blog/2024_11_04";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2024_11_18.mdx": {
 	id: "blog/2024_11_18.mdx";
   slug: "blog/2024_11_18";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2024_11_21.mdx": {
 	id: "blog/2024_11_21.mdx";
   slug: "blog/2024_11_21";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2024_11_27.mdx": {
 	id: "blog/2024_11_27.mdx";
   slug: "blog/2024_11_27";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2024_12_09.mdx": {
 	id: "blog/2024_12_09.mdx";
   slug: "blog/2024_12_09";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2024_12_20.mdx": {
 	id: "blog/2024_12_20.mdx";
   slug: "blog/2024_12_20";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2025_01_05.mdx": {
 	id: "blog/2025_01_05.mdx";
   slug: "blog/2025_01_05";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2025_02_06.mdx": {
 	id: "blog/2025_02_06.mdx";
   slug: "blog/2025_02_06";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2025_02_25.mdx": {
 	id: "blog/2025_02_25.mdx";
   slug: "blog/2025_02_25";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2025_03_14.mdx": {
 	id: "blog/2025_03_14.mdx";
   slug: "blog/2025_03_14";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2025_04_07.mdx": {
 	id: "blog/2025_04_07.mdx";
   slug: "blog/2025_04_07";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2025_04_10.mdx": {
 	id: "blog/2025_04_10.mdx";
   slug: "blog/2025_04_10";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2025_05_15.mdx": {
 	id: "blog/2025_05_15.mdx";
   slug: "blog/2025_05_15";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2025_05_23.mdx": {
 	id: "blog/2025_05_23.mdx";
   slug: "blog/2025_05_23";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2025_05_26.mdx": {
 	id: "blog/2025_05_26.mdx";
   slug: "blog/2025_05_26";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2025_07_25.mdx": {
 	id: "blog/2025_07_25.mdx";
   slug: "blog/2025_07_25";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2025_11_06.mdx": {
 	id: "blog/2025_11_06.mdx";
   slug: "blog/2025_11_06";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "blog/2025_12_06.mdx": {
 	id: "blog/2025_12_06.mdx";
   slug: "blog/2025_12_06";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
+} & { render(): Render[".mdx"] };
+"blog/2025_12_29.mdx": {
+	id: "blog/2025_12_29.mdx";
+  slug: "blog/2025_12_29";
+  body: string;
+  collection: "docs";
+  data: any
 } & { render(): Render[".mdx"] };
 "content_list/index.mdx": {
 	id: "content_list/index.mdx";
   slug: "content_list";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "content_list/reading/guns_germs_and_steel_diamond.mdx": {
 	id: "content_list/reading/guns_germs_and_steel_diamond.mdx";
   slug: "content_list/reading/guns_germs_and_steel_diamond";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "content_list/reading/index.mdx": {
 	id: "content_list/reading/index.mdx";
   slug: "content_list/reading";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "content_list/reading/school_sokolov.mdx": {
 	id: "content_list/reading/school_sokolov.mdx";
   slug: "content_list/reading/school_sokolov";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "content_list/reading/unbearable_kundera.mdx": {
 	id: "content_list/reading/unbearable_kundera.mdx";
   slug: "content_list/reading/unbearable_kundera";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "dev_guides/content_listing_in_starlight.mdx": {
 	id: "dev_guides/content_listing_in_starlight.mdx";
   slug: "dev_guides/content_listing_in_starlight";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "dev_guides/courses.mdx": {
 	id: "dev_guides/courses.mdx";
   slug: "dev_guides/courses";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "dev_guides/index.mdx": {
 	id: "dev_guides/index.mdx";
   slug: "dev_guides";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "dev_guides/memory_leaks.mdx": {
 	id: "dev_guides/memory_leaks.mdx";
   slug: "dev_guides/memory_leaks";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "dev_guides/patterns.mdx": {
 	id: "dev_guides/patterns.mdx";
   slug: "dev_guides/patterns";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "dev_guides/podlodka_techlead_7.mdx": {
 	id: "dev_guides/podlodka_techlead_7.mdx";
   slug: "dev_guides/podlodka_techlead_7";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "dev_guides/start_react_uui_ts_project.mdx": {
 	id: "dev_guides/start_react_uui_ts_project.mdx";
   slug: "dev_guides/start_react_uui_ts_project";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "dev_guides/testing_fundamentals_workshow.mdx": {
 	id: "dev_guides/testing_fundamentals_workshow.mdx";
   slug: "dev_guides/testing_fundamentals_workshow";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "index.mdx": {
 	id: "index.mdx";
   slug: "index";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/about.mdx": {
 	id: "ru/about.mdx";
   slug: "ru/about";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/blog/2024_10_15.mdx": {
 	id: "ru/blog/2024_10_15.mdx";
   slug: "ru/blog/2024_10_15";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/blog/2024_10_17.mdx": {
 	id: "ru/blog/2024_10_17.mdx";
   slug: "ru/blog/2024_10_17";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/blog/2024_11_04.mdx": {
 	id: "ru/blog/2024_11_04.mdx";
   slug: "ru/blog/2024_11_04";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/blog/2024_11_18.mdx": {
 	id: "ru/blog/2024_11_18.mdx";
   slug: "ru/blog/2024_11_18";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/blog/2024_11_21.mdx": {
 	id: "ru/blog/2024_11_21.mdx";
   slug: "ru/blog/2024_11_21";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/blog/2024_11_27.mdx": {
 	id: "ru/blog/2024_11_27.mdx";
   slug: "ru/blog/2024_11_27";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/blog/2024_12_09.mdx": {
 	id: "ru/blog/2024_12_09.mdx";
   slug: "ru/blog/2024_12_09";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/blog/2024_12_20.mdx": {
 	id: "ru/blog/2024_12_20.mdx";
   slug: "ru/blog/2024_12_20";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/blog/2025_01_05.mdx": {
 	id: "ru/blog/2025_01_05.mdx";
   slug: "ru/blog/2025_01_05";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/blog/2025_02_06.mdx": {
 	id: "ru/blog/2025_02_06.mdx";
   slug: "ru/blog/2025_02_06";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/blog/2025_02_25.mdx": {
 	id: "ru/blog/2025_02_25.mdx";
   slug: "ru/blog/2025_02_25";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/blog/2025_03_14.mdx": {
 	id: "ru/blog/2025_03_14.mdx";
   slug: "ru/blog/2025_03_14";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/blog/2025_07_25.mdx": {
 	id: "ru/blog/2025_07_25.mdx";
   slug: "ru/blog/2025_07_25";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/content_list/reading/guns_germs_and_steel_diamond.mdx": {
 	id: "ru/content_list/reading/guns_germs_and_steel_diamond.mdx";
   slug: "ru/content_list/reading/guns_germs_and_steel_diamond";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/content_list/reading/index.mdx": {
 	id: "ru/content_list/reading/index.mdx";
   slug: "ru/content_list/reading";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/content_list/reading/school_sokolov.mdx": {
 	id: "ru/content_list/reading/school_sokolov.mdx";
   slug: "ru/content_list/reading/school_sokolov";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/content_list/reading/unbearable_kundera.mdx": {
 	id: "ru/content_list/reading/unbearable_kundera.mdx";
   slug: "ru/content_list/reading/unbearable_kundera";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/dev_guides/content_listing_in_starlight.mdx": {
 	id: "ru/dev_guides/content_listing_in_starlight.mdx";
   slug: "ru/dev_guides/content_listing_in_starlight";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/dev_guides/courses.mdx": {
 	id: "ru/dev_guides/courses.mdx";
   slug: "ru/dev_guides/courses";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/dev_guides/memory_leaks.mdx": {
 	id: "ru/dev_guides/memory_leaks.mdx";
   slug: "ru/dev_guides/memory_leaks";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/dev_guides/podlodka_techlead_7.mdx": {
 	id: "ru/dev_guides/podlodka_techlead_7.mdx";
   slug: "ru/dev_guides/podlodka_techlead_7";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/dev_guides/start_react_uui_ts_project.mdx": {
 	id: "ru/dev_guides/start_react_uui_ts_project.mdx";
   slug: "ru/dev_guides/start_react_uui_ts_project";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 "ru/dev_guides/testing_fundamentals_workshow.mdx": {
 	id: "ru/dev_guides/testing_fundamentals_workshow.mdx";
   slug: "ru/dev_guides/testing_fundamentals_workshow";
   body: string;
   collection: "docs";
-  data: InferEntrySchema<"docs">
+  data: any
 } & { render(): Render[".mdx"] };
 };
 
@@ -573,12 +580,12 @@ declare module 'astro:content' {
 "en": {
 	id: "en";
   collection: "i18n";
-  data: InferEntrySchema<"i18n">
+  data: any
 };
 "ru": {
 	id: "ru";
   collection: "i18n";
-  data: InferEntrySchema<"i18n">
+  data: any
 };
 };
 
@@ -586,5 +593,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = typeof import("../../src/content/config.js");
+	export type ContentConfig = never;
 }
