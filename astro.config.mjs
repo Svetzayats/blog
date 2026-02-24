@@ -31,6 +31,7 @@ export default defineConfig({
 					label: 'Content List', 
 					autogenerate: { directory: 'content_list' },
 				},
+				{ label: 'Quotes', link: '/quotes/', translations: { ru: 'Цитаты' } },
 			],
 			defaultLocale: 'root',
 			locales: {

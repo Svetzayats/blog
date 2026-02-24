@@ -1,0 +1,411 @@
+---
+// src/pages/quotes/index.astro
+import { getCollection } from 'astro:content';
+
+const allQuotes = await getCollection('quotes');
+const sorted = allQuotes.sort((a, b) => {
+  if (a.data.favorite && !b.data.favorite) return -1;
+  if (!a.data.favorite && b.data.favorite) return 1;
+  return (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0);
+});
+
+const allTags = [...new Set(sorted.flatMap(q => q.data.tags))].sort();
+
+const quotesData = sorted.map(q => ({
+  slug: q.slug,
+  author: q.data.author,
+  source: q.data.source ?? null,
+  tags: q.data.tags,
+  comment: q.data.comment ?? null,
+  favorite: q.data.favorite,
+  body: q.body.trim(),
+}));
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quotes — Svetlana Zaiats</title>
+  <meta name="description" content="A collection of quotes that moved, challenged, or stayed with me." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sl-color-accent-low: #36113e;
+      --sl-color-accent: #a400c0;
+      --sl-color-accent-high: #e3b6ed;
+      --sl-color-white: #ffffff;
+      --sl-color-gray-1: #f2e9fd;
+      --sl-color-gray-2: #c7bdd5;
+      --sl-color-gray-3: #9581ae;
+      --sl-color-gray-4: #614e78;
+      --sl-color-gray-5: #412e55;
+      --sl-color-gray-6: #2f1c42;
+      --sl-color-black: #1c1425;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --sl-color-accent-low: #ebc9f3;
+        --sl-color-accent: #a700c3;
+        --sl-color-accent-high: #4e0e5b;
+        --sl-color-white: #1c1425;
+        --sl-color-gray-1: #2f1c42;
+        --sl-color-gray-2: #412e55;
+        --sl-color-gray-3: #614e78;
+        --sl-color-gray-4: #9581ae;
+        --sl-color-gray-5: #c7bdd5;
+        --sl-color-gray-6: #f2e9fd;
+        --sl-color-black: #ffffff;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--sl-color-black);
+      color: var(--sl-color-gray-1);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid var(--sl-color-gray-5);
+    }
+    .site-nav a {
+      color: var(--sl-color-gray-2);
+      text-decoration: none;
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .site-nav a:hover { color: var(--sl-color-accent-high); }
+    .site-nav .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--sl-color-gray-1);
+    }
+
+    /* ── HEADER ── */
+    .page-header {
+      max-width: 800px;
+      margin: 4rem auto 3rem;
+      padding: 0 2rem;
+    }
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--sl-color-gray-1);
+      margin-bottom: 0.75rem;
+    }
+    .page-header h1 em {
+      font-style: italic;
+      color: var(--sl-color-accent-high);
+    }
+    .page-header p {
+      color: var(--sl-color-gray-3);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .quote-count {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sl-color-gray-4);
+    }
+
+    /* ── CONTROLS ── */
+    .controls {
+      max-width: 1200px;
+      margin: 0 auto 2.5rem;
+      padding: 0 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .search-wrap {
+      position: relative;
+    }
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--sl-color-gray-4);
+      pointer-events: none;
+    }
+    #search {
+      width: 100%;
+      background: var(--sl-color-gray-6);
+      border: 1px solid var(--sl-color-gray-5);
+      border-radius: 8px;
+      padding: 0.75rem 1rem 0.75rem 2.75rem;
+      color: var(--sl-color-gray-1);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    #search::placeholder { color: var(--sl-color-gray-4); }
+    #search:focus {
+      border-color: var(--sl-color-accent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--sl-color-accent) 20%, transparent);
+    }
+
+    .tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .tags-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sl-color-gray-4);
+      margin-right: 0.25rem;
+    }
+    .tag-btn {
+      background: transparent;
+      border: 1px solid var(--sl-color-gray-5);
+      border-radius: 100px;
+      padding: 0.3rem 0.85rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      color: var(--sl-color-gray-3);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .tag-btn:hover {
+      border-color: var(--sl-color-accent);
+      color: var(--sl-color-accent-high);
+    }
+    .tag-btn.active {
+      background: var(--sl-color-accent);
+      border-color: var(--sl-color-accent);
+      color: #fff;
+    }
+    .tag-btn.clear-btn {
+      border-color: var(--sl-color-gray-5);
+      color: var(--sl-color-gray-4);
+      font-size: 0.75rem;
+    }
+
+    /* ── GRID ── */
+    .quotes-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+      columns: 3;
+      column-gap: 1.25rem;
+    }
+    @media (max-width: 900px) { .quotes-grid { columns: 2; } }
+    @media (max-width: 580px) { .quotes-grid { columns: 1; } }
+
+    .quote-card {
+      break-inside: avoid;
+      background: var(--sl-color-gray-6);
+      border: 1px solid var(--sl-color-gray-5);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      animation: fadeIn 0.3s ease both;
+    }
+    .quote-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--sl-color-accent);
+      box-shadow: 0 8px 32px color-mix(in srgb, var(--sl-color-accent) 15%, transparent);
+    }
+    .quote-card.hidden { display: none; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .favorite-dot {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--sl-color-accent);
+    }
+
+    .quote-body {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--sl-color-gray-1);
+      margin-bottom: 1.25rem;
+    }
+    .quote-body::before { content: '\201C'; }
+    .quote-body::after  { content: '\201D'; }
+
+    .quote-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .quote-author {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--sl-color-gray-2);
+      letter-spacing: 0.02em;
+    }
+    .quote-source {
+      font-size: 0.78rem;
+      color: var(--sl-color-gray-4);
+      font-style: italic;
+    }
+    .quote-comment {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--sl-color-gray-5);
+      font-size: 0.8rem;
+      color: var(--sl-color-gray-3);
+      line-height: 1.5;
+    }
+    .quote-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.85rem;
+    }
+    .quote-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--sl-color-accent-high);
+      background: color-mix(in srgb, var(--sl-color-accent) 12%, transparent);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--sl-color-gray-4);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+    .empty-state.visible { display: block; }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="/" class="logo">🐰 Svetlana Zaiats</a>
+    <div style="display:flex;gap:1.5rem">
+      <a href="/blog">Blog</a>
+      <a href="/about">About</a>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <h1>Bits & Pieces</h1>
+    <p>Just some quotes I found interesting enough to copy-paste.</p>
+    <span class="quote-count" id="counter">{sorted.length} quotes</span>
+  </header>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="search" id="search" placeholder="Search quotes, authors, sources…" autocomplete="off" />
+    </div>
+    <div class="tags-row">
+      <span class="tags-label">Tags</span>
+      <button class="tag-btn clear-btn active" data-tag="all">All</button>
+      {allTags.map(tag => (
+        <button class="tag-btn" data-tag={tag}>{tag}</button>
+      ))}
+    </div>
+  </div>
+
+  <main class="quotes-grid" id="grid">
+    {sorted.map(q => (
+      <a
+        class={`quote-card${q.data.favorite ? ' is-favorite' : ''}`}
+        href={`/quotes/${q.slug}`}
+        data-tags={q.data.tags.join(',')}
+        data-text={`${q.body} ${q.data.author} ${q.data.source ?? ''} ${q.data.comment ?? ''}`.toLowerCase()}
+      >
+        {q.data.favorite && <span class="favorite-dot" title="Favourite" />}
+        <p class="quote-body">{q.body.trim()}</p>
+        <div class="quote-meta">
+          <span class="quote-author">{q.data.author}</span>
+          {q.data.source && <span class="quote-source">{q.data.source}</span>}
+          {q.data.comment && <p class="quote-comment">{q.data.comment}</p>}
+          {q.data.tags.length > 0 && (
+            <div class="quote-tags">
+              {q.data.tags.map(t => <span class="quote-tag">{t}</span>)}
+            </div>
+          )}
+        </div>
+      </a>
+    ))}
+  </main>
+  <div class="empty-state" id="empty">No quotes match your search.</div>
+
+  <script is:inline define:vars={{ quotesData }}>
+    const cards = [...document.querySelectorAll('.quote-card')];
+    const searchEl = document.getElementById('search');
+    const tagBtns = document.querySelectorAll('.tag-btn');
+    const counter = document.getElementById('counter');
+    const empty = document.getElementById('empty');
+    let activeTag = 'all';
+    let searchQuery = '';
+
+    function filter() {
+      let visible = 0;
+      cards.forEach(card => {
+        const tags = card.dataset.tags ? card.dataset.tags.split(',') : [];
+        const text = card.dataset.text ?? '';
+        const tagMatch = activeTag === 'all' || tags.includes(activeTag);
+        const searchMatch = !searchQuery || text.includes(searchQuery);
+        const show = tagMatch && searchMatch;
+        card.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      counter.textContent = `${visible} quote${visible !== 1 ? 's' : ''}`;
+      empty.classList.toggle('visible', visible === 0);
+    }
+
+    searchEl.addEventListener('input', e => {
+      searchQuery = e.target.value.toLowerCase().trim();
+      filter();
+    });
+
+    tagBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tagBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeTag = btn.dataset.tag;
+        filter();
+      });
+    });
+  </script>
+</body>
+</html>

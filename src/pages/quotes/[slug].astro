@@ -1,0 +1,351 @@
+---
+// src/pages/quotes/[slug].astro
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const quotes = await getCollection('quotes');
+  return quotes.map(q => ({ params: { slug: q.slug }, props: { quote: q } }));
+}
+
+const { quote } = Astro.props;
+const { data } = quote;
+const body = quote.body.trim();
+
+const ogTitle = `"${body.slice(0, 60)}${body.length > 60 ? '…' : ''}" — ${data.author}`;
+const ogDesc = data.comment ?? `A quote by ${data.author}${data.source ? ` from ${data.source}` : ''}.`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{ogTitle} · svetzayats.com</title>
+  <meta name="description" content={ogDesc} />
+  <meta property="og:title" content={ogTitle} />
+  <meta property="og:description" content={ogDesc} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content={ogTitle} />
+  <meta name="twitter:description" content={ogDesc} />
+  <link rel="canonical" href={canonicalUrl} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --sl-color-accent-low: #36113e;
+      --sl-color-accent: #a400c0;
+      --sl-color-accent-high: #e3b6ed;
+      --sl-color-white: #ffffff;
+      --sl-color-gray-1: #f2e9fd;
+      --sl-color-gray-2: #c7bdd5;
+      --sl-color-gray-3: #9581ae;
+      --sl-color-gray-4: #614e78;
+      --sl-color-gray-5: #412e55;
+      --sl-color-gray-6: #2f1c42;
+      --sl-color-black: #1c1425;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --sl-color-accent-low: #ebc9f3;
+        --sl-color-accent: #a700c3;
+        --sl-color-accent-high: #4e0e5b;
+        --sl-color-white: #1c1425;
+        --sl-color-gray-1: #2f1c42;
+        --sl-color-gray-2: #412e55;
+        --sl-color-gray-3: #614e78;
+        --sl-color-gray-4: #9581ae;
+        --sl-color-gray-5: #c7bdd5;
+        --sl-color-gray-6: #f2e9fd;
+        --sl-color-black: #ffffff;
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--sl-color-black);
+      color: var(--sl-color-gray-1);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── NAV ── */
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid var(--sl-color-gray-5);
+    }
+    .site-nav a {
+      color: var(--sl-color-gray-3);
+      text-decoration: none;
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .site-nav a:hover { color: var(--sl-color-accent-high); }
+    .site-nav .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--sl-color-gray-1);
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── MAIN CARD ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+
+    .quote-stage {
+      width: 100%;
+      max-width: 680px;
+      position: relative;
+    }
+
+    /* decorative large quote mark */
+    .quote-stage::before {
+      content: '\201C';
+      font-family: 'Playfair Display', serif;
+      font-size: 14rem;
+      line-height: 1;
+      color: var(--sl-color-gray-5);
+      position: absolute;
+      top: -3rem;
+      left: -2rem;
+      pointer-events: none;
+      opacity: 0.4;
+      z-index: 0;
+    }
+
+    .quote-card {
+      position: relative;
+      z-index: 1;
+      background: var(--sl-color-gray-6);
+      border: 1px solid var(--sl-color-gray-5);
+      border-radius: 16px;
+      padding: 3rem;
+      animation: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.25rem, 3vw, 1.65rem);
+      line-height: 1.7;
+      color: var(--sl-color-gray-1);
+      margin-bottom: 2rem;
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--sl-color-accent);
+      margin-bottom: 1.5rem;
+      border-radius: 2px;
+    }
+
+    .attribution {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .author {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--sl-color-gray-1);
+      letter-spacing: 0.03em;
+    }
+    .source {
+      font-size: 0.875rem;
+      color: var(--sl-color-gray-3);
+      font-style: italic;
+    }
+
+    .comment-block {
+      background: color-mix(in srgb, var(--sl-color-accent) 8%, transparent);
+      border-left: 2px solid var(--sl-color-accent);
+      border-radius: 0 8px 8px 0;
+      padding: 0.85rem 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    .comment-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sl-color-accent-high);
+      margin-bottom: 0.35rem;
+    }
+    .comment-text {
+      font-size: 0.9rem;
+      color: var(--sl-color-gray-2);
+      line-height: 1.6;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 2rem;
+    }
+    .tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--sl-color-accent-high);
+      background: color-mix(in srgb, var(--sl-color-accent) 12%, transparent);
+      border-radius: 4px;
+      padding: 0.25rem 0.6rem;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .tag:hover {
+      background: color-mix(in srgb, var(--sl-color-accent) 25%, transparent);
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-decoration: none;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--sl-color-accent);
+      color: #fff;
+    }
+    .btn-primary:hover { filter: brightness(1.15); }
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--sl-color-gray-5);
+      color: var(--sl-color-gray-3);
+    }
+    .btn-ghost:hover {
+      border-color: var(--sl-color-gray-3);
+      color: var(--sl-color-gray-1);
+    }
+    .btn-ghost.copied {
+      border-color: #4ade80;
+      color: #4ade80;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.78rem;
+      color: var(--sl-color-gray-5);
+      border-top: 1px solid var(--sl-color-gray-6);
+    }
+    footer a { color: var(--sl-color-gray-4); text-decoration: none; }
+    footer a:hover { color: var(--sl-color-accent-high); }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <a href="/" class="logo">🐰 Svetlana Zaiats</a>
+    <a href="/quotes" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      All quotes
+    </a>
+  </nav>
+
+  <main>
+    <div class="quote-stage">
+      <article class="quote-card">
+        <p class="quote-text">{body}</p>
+
+        <div class="divider"></div>
+
+        <div class="attribution">
+          <span class="author">{data.author}</span>
+          {data.source && <span class="source">{data.source}</span>}
+        </div>
+
+        {data.comment && (
+          <div class="comment-block">
+            <div class="comment-label">My note</div>
+            <p class="comment-text">{data.comment}</p>
+          </div>
+        )}
+
+        {data.tags.length > 0 && (
+          <div class="tags">
+            {data.tags.map(tag => (
+              <a class="tag" href={`/quotes?tag=${tag}`}>{tag}</a>
+            ))}
+          </div>
+        )}
+
+        <div class="actions">
+          <button class="btn btn-ghost" id="copyBtn" onclick="copyLink()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+            <span id="copyLabel">Copy link</span>
+          </button>
+          <a class="btn btn-ghost" href="/quotes">Browse all quotes</a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    Part of <a href="/">svetzayats.com</a> · quotes collected by Svetlana
+  </footer>
+
+  <script is:inline>
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        const btn = document.getElementById('copyBtn');
+        const label = document.getElementById('copyLabel');
+        btn.classList.add('copied');
+        label.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          label.textContent = 'Copy link';
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

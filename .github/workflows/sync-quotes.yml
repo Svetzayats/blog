@@ -1,0 +1,48 @@
+name: Sync Quotes from Google Drive
+
+on:
+  schedule:
+    # Runs every 30 minutes
+    - cron: '*/30 * * * *'
+  # Allow manual trigger from GitHub Actions UI
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Google APIs client
+        run: npm install googleapis
+
+      - name: Sync quotes
+        env:
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+          # Set these in repo secrets:
+          # QUOTES_FILE_ID   — the Google Drive file ID of your main quotes.md
+          # QUOTES_FOLDER_ID — the Google Drive folder ID of your individual quote files
+          QUOTES_FILE_ID: ${{ secrets.QUOTES_FILE_ID }}
+          QUOTES_FOLDER_ID: ${{ secrets.QUOTES_FOLDER_ID }}
+        run: node .github/scripts/sync-quotes.js
+
+      - name: Commit changes if any
+        run: |
+          git config user.name "quotes-bot"
+          git config user.email "quotes-bot@svetzayats.com"
+          git add src/content/quotes/ quotes-meta.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: sync quotes from Google Drive [skip ci]"
+            git push
+          fi

@@ -24,4 +24,15 @@ export const collections = {
 			'bookInfo.recommendations': z.string().optional(),
 		}),
 	}) }),
+	quotes: defineCollection({
+    type: 'content',
+    schema: z.object({
+      author: z.string().optional(),
+      source: z.string().optional(),
+      tags: z.array(z.string()).default([]),
+      comment: z.string().optional(),
+      date: z.coerce.date().optional(),
+      favorite: z.boolean().default(false),
+    }),
+  }),
 };
