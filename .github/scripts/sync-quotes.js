@@ -143,12 +143,10 @@ async function main() {
       console.log(`Main quotes file changed (${fileMeta.modifiedTime}), downloading…`);
       hasChanges = true;
 
-      const res = await drive.files.export(
-        { fileId, mimeType: 'text/plain' },
+      const res = await drive.files.get(
+        { fileId, alt: 'media' },
         { responseType: 'text' }
       );
-      // Note: for regular (non-Docs) files use get with alt=media instead:
-      // const res = await drive.files.get({ fileId, alt: 'media' }, { responseType: 'text' });
 
       const content = res.data;
       const blocks = splitMultiQuoteFile(content);
