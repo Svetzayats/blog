@@ -1,7 +1,7 @@
 ---
 author: ""
-source: "Pudder’s Law"
+source: "Schnatterly's Summing-up of the Corollaries"
 tags: []
 ---
 
-If anything can’t go wrong, it will
+If anything can't go wrong, it will.

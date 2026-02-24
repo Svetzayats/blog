@@ -1,6 +1,6 @@
 ---
 author: ""
-source: "Clarke’s Second Law"
+source: "The Cardinal Conundrum"
 tags: []
 ---
 

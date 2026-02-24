@@ -1,6 +1,6 @@
 ---
 author: ""
-source: "Campbell’s Law"
+source: "Pudder's Law"
 tags: []
 ---
 

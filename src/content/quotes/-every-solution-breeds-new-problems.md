@@ -1,7 +1,7 @@
 ---
 author: ""
-source: "Leahy’s Law"
+source: "Murphy's Law Corollary"
 tags: []
 ---
 
-Every solution breeds new problems
+Every solution breeds new problems.

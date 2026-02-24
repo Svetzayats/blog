@@ -1,6 +1,6 @@
 ---
 author: ""
-source: "Clarke’s Third Law"
+source: "Clarke's Third Law"
 tags: []
 ---
 

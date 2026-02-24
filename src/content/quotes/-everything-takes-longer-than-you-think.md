@@ -1,7 +1,7 @@
 ---
 author: ""
-source: "Murphy’s Law Corollary"
+source: "Murphy's Law Corollary"
 tags: []
 ---
 
-Everything takes longer than you think it will
+Everything takes longer than you think it will.

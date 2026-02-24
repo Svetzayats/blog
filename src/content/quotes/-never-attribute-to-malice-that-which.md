@@ -1,7 +1,7 @@
 ---
 author: ""
-source: "Hanlon’s Razor"
+source: "Hanlon's Razor"
 tags: []
 ---
 
-Never attribute to malice that which is adequately explained by stupidity
+Never attribute to malice that which is adequately explained by stupidity.

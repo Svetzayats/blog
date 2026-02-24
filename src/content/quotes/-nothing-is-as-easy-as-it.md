@@ -1,7 +1,7 @@
 ---
 author: ""
-source: "Murphy’s Law Corollary"
+source: "Murphy's Law Corollary"
 tags: []
 ---
 
-Nothing is as easy as it looks
+Nothing is as easy as it looks.
