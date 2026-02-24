@@ -1,0 +1,6 @@
+---
+author: "Terry Pratchett"
+tags: []
+---
+
+I'll be more enthusiastic about encouraging thinking outside the box when there's evidence of any thinking going on inside it
