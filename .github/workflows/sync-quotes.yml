@@ -3,7 +3,7 @@ name: Sync Quotes from Google Drive
 on:
   schedule:
     # Runs every 30 minutes
-    - cron: '*/30 * * * *'
+    - cron: '0 */8 * * *'
   # Allow manual trigger from GitHub Actions UI
   workflow_dispatch:
 
