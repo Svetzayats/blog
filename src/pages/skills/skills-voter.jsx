@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { REACT_SKILLS } from "./react-skills-data";
 import { REACT_NATIVE_SKILLS } from "./react-native-skills-data";
 import { COMPOSITION_PATTERNS_SKILLS } from "./composition-patterns-skills-data";
+import { createClient } from "@supabase/supabase-js";
 
 // ─── SKILLS DATA ──────────────────────────────────────────────────────────────
 
@@ -44,17 +45,6 @@ const SCORE_CONFIG = [
   { value:  1, label: "Like", emoji: "👍", color: "#22c55e" },
   { value:  2, label: "Must", emoji: "⭐", color: "#f59e0b" },
 ];
-
-// ─── MOCK STORAGE ─────────────────────────────────────────────────────────────
-// Shape: { [skillId]: [ { user, score, comment, ts } ] }
-function loadVotes() {
-  try {
-    return JSON.parse(localStorage.getItem("skill_votes") || "{}");
-  } catch { return {}; }
-}
-function saveVotes(votes) {
-  localStorage.setItem("skill_votes", JSON.stringify(votes));
-}
 
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
 function avg(arr) {
@@ -289,11 +279,20 @@ function ResultRow({ skill, votes, groupColor, rank }) {
 
 // ─── MAIN APP ─────────────────────────────────────────────────────────────────
 export default function App() {
+  const [voterId] = useState(() => {
+  if (typeof window === "undefined") return "";
+  let id = localStorage.getItem("skill_voter_id");
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem("skill_voter_id", id);
+  }
+  return id;
+});
   const [view, setView] = useState("vote"); // "vote" | "results"
   const [userName, setUserName] = useState(() => typeof window !== 'undefined' && localStorage?.getItem("skill_voter_name") || "");
   const [nameInput, setNameInput] = useState("");
   const [nameSet, setNameSet] = useState(() => typeof window !== 'undefined' && !!localStorage?.getItem("skill_voter_name") || false );
-  const [votes, setVotes] = useState(loadVotes);
+  const [votes, setVotes] = useState({});
   const [collapsedGroups, setCollapsedGroups] = useState({});
 
   // My votes for current user
@@ -306,6 +305,28 @@ export default function App() {
     return map;
   }, [votes, userName]);
 
+  const supabase = useMemo(() => {
+  if (typeof window === "undefined") return null;
+  return createClient('https://ioauvglspgghucbihlgv.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlvYXV2Z2xzcGdnaHVjYmlobGd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIyMTk2NDAsImV4cCI6MjA4Nzc5NTY0MH0.tsUHlnmbjbS24HUEsd1wIzSq22VYL3uPy7ctBvJFmjQ');
+}, []);
+
+  useEffect(() => {
+  if (!supabase) return;
+  supabase.from("votes").select("*").then(({ data }) => {
+    if (!data) return;
+    const map = {};
+    data.forEach(row => {
+      if (!map[row.skill_id]) map[row.skill_id] = [];
+      map[row.skill_id].push({
+        user: row.user_name,
+        score: row.score,
+        comment: row.comment,
+      });
+    });
+    setVotes(map);
+  });
+}, [supabase]);
+
   function setName(name) {
     const n = name.trim() || "Anonymous";
     setUserName(n);
@@ -313,17 +334,26 @@ export default function App() {
     setNameSet(true);
   }
 
-  function handleVote(skillId, score, comment) {
-    const newVotes = { ...votes };
-    const user = userName || "Anonymous";
-    if (!newVotes[skillId]) newVotes[skillId] = [];
-    const idx = newVotes[skillId].findIndex(v => v.user === user);
-    const entry = { user, score, comment, ts: Date.now() };
-    if (idx >= 0) newVotes[skillId][idx] = entry;
-    else newVotes[skillId].push(entry);
-    setVotes(newVotes);
-    saveVotes(newVotes);
+  async function handleVote(skillId, score, comment) {
+    if (!supabase) return;
+  const user = userName || "Anonymous";
+  const { error } = await supabase.from("votes").upsert(
+    { skill_id: skillId, voter_id: voterId, user_name: user, score, comment },
+    { onConflict: "skill_id,voter_id" }
+  );
+  if (error) { 
+    console.error(error); 
+    return; 
   }
+
+  setVotes(prev => {
+    const list = [...(prev[skillId] || [])];
+    const idx = list.findIndex(v => v.user === user);
+    const entry = { user, score, comment };
+    if (idx >= 0) list[idx] = entry; else list.push(entry);
+    return { ...prev, [skillId]: list };
+  });
+}
 
   // Results: sort by avg score descending
   const sortedResults = useMemo(() => {
