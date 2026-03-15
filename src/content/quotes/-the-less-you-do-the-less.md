@@ -1,7 +1,7 @@
 ---
 author: ""
 source: "Campbell's Law"
-tags: []
+tags: ["murphy", "work"]
 ---
 
 The less you do, the less can go wrong.

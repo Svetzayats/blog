@@ -1,7 +1,7 @@
 ---
 author: ""
 source: "Jose's Axiom Corollary"
-tags: []
+tags: ["work"]
 ---
 
 Nothing is as permanent as that which is called temporary.

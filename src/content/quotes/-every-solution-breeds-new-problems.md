@@ -1,7 +1,7 @@
 ---
 author: ""
 source: "Murphy's Law Corollary"
-tags: []
+tags: ["murphy"]
 ---
 
 Every solution breeds new problems.

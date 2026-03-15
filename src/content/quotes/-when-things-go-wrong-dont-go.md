@@ -1,7 +1,7 @@
 ---
 author: ""
 source: "Murphy's Comment"
-tags: []
+tags: ["murphy"]
 ---
 
 When things go wrong, don't go with them.

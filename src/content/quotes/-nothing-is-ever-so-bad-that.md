@@ -1,7 +1,7 @@
 ---
 author: ""
 source: "Gattuso's Extension of Murphy's Law"
-tags: []
+tags: ["murphy"]
 ---
 
 Nothing is ever so bad that it can't get worse.

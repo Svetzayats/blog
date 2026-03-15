@@ -1,7 +1,7 @@
 ---
 author: ""
 source: "Stewart's Law of Retroaction"
-tags: []
+tags: ["work"]
 ---
 
 It is easier to get forgiveness than permission

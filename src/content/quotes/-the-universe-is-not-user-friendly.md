@@ -1,7 +1,7 @@
 ---
 author: ""
 source: "Throop's Axiom"
-tags: []
+tags: ["work"]
 ---
 
 The universe is not user-friendly.

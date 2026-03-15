@@ -1,7 +1,7 @@
 ---
 author: ""
 source: "Ziggy's Law"
-tags: []
+tags: ["work"]
 ---
 
 Do a little more each day than everyone expects and soon everyone will expect more
