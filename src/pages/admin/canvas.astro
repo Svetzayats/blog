@@ -1,0 +1,15 @@
+---
+// This page intentionally has no server-side auth check —
+// tldraw requires client:only, so auth is handled in the React component
+import CanvasAdminPage from '../../components/CanvasAdminPage'
+---
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas Editor</title>
+  </head>
+  <body style="margin: 0; padding: 0; background: #f6f6f6;">
+    <CanvasAdminPage client:only="react" />
+  </body>
+</html>
